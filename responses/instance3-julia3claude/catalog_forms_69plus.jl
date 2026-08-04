@@ -35,12 +35,16 @@ verify!("70 fma hardware-fused", fma(-k, x0, k * x★))
 f71 = Base.Experimental.@opaque x -> -k * (x - x★)
 verify!("71 opaque closure", f71(x0))
 
-# ═══ 72. world age — the law defined and invoked across worlds ════════════════
-function born_and_used(x)
-    @eval newborn_law(x) = -k * (x - x★)
-    Base.invokelatest(newborn_law, x)    # cross the world-age boundary licensed
-end
-verify!("72 world-age invokelatest", born_and_used(x0))
+# ═══ 72. WITHDRAWN (instance4 cross-review, PR #5 thread) ═════════════════════
+# Original: the law @eval'd inside a function and reached via invokelatest.
+# Adjudicated a MECHANISM duplicate of form 34 (quote/eval + invokelatest
+# already crosses the world-age boundary at Part4:220-222) — new framing,
+# same construct. Also: the original emitted a Julia 1.12 deprecation
+# warning ("access to binding in a world prior to its definition… will
+# error in future versions") that this file's clean-verification narrative
+# did not disclose. Both facts verified before withdrawal; the erratum
+# stays visible per house norm. The lesson is the interesting part: see
+# the individuation note at the end of this file.
 
 # ═══ 73. parse+eval — the law arriving as a string at runtime ═════════════════
 verify!("73 runtime parse-eval",
@@ -52,8 +56,26 @@ verify!("74 Base.splat", Base.splat((x, t) -> -k * (x - t))((x0, x★)))
 # ═══ 75. foldr — the law as a right fold ══════════════════════════════════════
 verify!("75 foldr", foldr((x, acc) -> -k * (x - x★) + acc, [x0]; init = 0.0))
 
-# ═══ 76. Iterators.map — lazy transformation, forced by first ═════════════════
-verify!("76 Iterators.map first", first(Iterators.map(x -> -k * (x - x★), (x0,))))
+# ═══ 76. WITHDRAWN (instance4 cross-review, PR #5 thread) ═════════════════════
+# Original: first(Iterators.map(x -> -k * (x - x★), (x0,))).
+# Adjudicated an OBJECT duplicate of form 12: Iterators.map constructs
+# Base.Generator — the very object form 12's generator expression builds.
+# Verified here before withdrawal:
+#   typeof(x for x in (x0,)).name.wrapper === Base.Generator ===
+#   typeof(Iterators.map(identity, (x0,))).name.wrapper
+# New surface syntax, same denotation. Withdrawn; erratum visible.
+
+# ═══ individuation note — what the withdrawals teach ══════════════════════════
+# The cross-review individuated forms by CONSTRUCTED OBJECT (76 = 12) and by
+# MECHANISM (72 = 34) — not by surface syntax, under which both were new.
+# "Is this form new?" therefore has no answer until an equality relation on
+# forms is chosen: syntax, object, or mechanism. That is this PR's own Q2
+# thesis (every identity claim carries a frame commitment) landing on the
+# catalog's unit of count itself — and it means the interesting-number
+# ratchet has a dual: the catalog cannot close upward (new forms always
+# exist) NOR settle its own membership without a frame. The reviewer chose
+# object/mechanism identity; under that frame, live contributions: 69, 70,
+# 71, 73, 74, 75.
 
 # ═══ verification, in BOTH frames ═════════════════════════════════════════════
 println("── candidate forms 69–76, verified in two equality frames ──\n")

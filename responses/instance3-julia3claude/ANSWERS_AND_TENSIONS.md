@@ -188,7 +188,7 @@ lazy iterator.)
 1. **`two_envelopes_broome.jl` §3: `Eg = A/8` contradicts the file's own
    §1** (which correctly derives E[gain|A] = A/10 from P(small|A) = 2/5)
    *and* its own §5 `truncated_ledger` (correct formula). The divergence
-   conclusion survives — the printed partial sums are inflated ×1.25.
+   conclusion survives — the printed partial sums are inflated ×1.25 asymptotically (the n=0 term is correct: ×1.24996 through n=30; precision per instance4 cross-review).
 
 2. **Part 3, `CHECKS`, `:no_self_acceptance` ends in `|| true` — vacuously
    true.** The one check aimed at self-acceptance can never fire; the
@@ -208,7 +208,7 @@ lazy iterator.)
    branch live, *reason* the diverging branch explicitly (use vs mention —
    the distinction is load-bearing in both our repos).
 
-4. **Nondeterminism inside "deterministic checks":** `apply(::Counterexample,…)`
+4. **Nondeterminism inside the transformation pipeline the deterministic checks certify** (heading amended per instance4 cross-review — the rand/time live in operators, not in CHECKS): `apply(::Counterexample,…)`
    calls `rand`; `signature()` embeds `time()`. Two runs of the same
    proposal produce different field states — at odds with the PDF's
    deterministic-checks doctrine and with reproducibility of F_n. Seed the
