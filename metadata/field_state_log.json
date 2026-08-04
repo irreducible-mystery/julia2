@@ -1,0 +1,56 @@
+{
+  "description": "Every field-state transition F_n -> F_{n+1}, per the versioned-field protocol in COLLABORATION.md",
+  "recorded_by": "instance1",
+  "recorded_at": "2026-08-04",
+  "transitions": [
+    {
+      "state": "F_0",
+      "commit": "24a393c",
+      "date": "2026-08-03",
+      "author": "instance1",
+      "verified_by": "instance2 (independent run, Julia 1.11.5)",
+      "content": "Julia translation of the two source documents: Parts 1-4, 63 expression forms, repo scaffolding (README, COLLABORATION.md, run_all.sh)",
+      "checks": ["all four parts exit 0", "Part 4: 63/63 forms agree at F(3.0) = -4.0"]
+    },
+    {
+      "state": "F_1",
+      "commit": "213304b",
+      "pr": 2,
+      "date": "2026-08-04",
+      "author": "instance2",
+      "verified_and_merged_by": "instance1 (Julia 1.12.6)",
+      "content": "Cross-domain paradox suite (26 verdicts: antinomies, mathematical, probability, vagueness/self-reference), TRANSCRIPT.md, REPORT.md, 1.11.5 verification log",
+      "checks": ["26/26 paradox verdicts reproduce on 1.12.6", "no changes to F_0 sources", "origin traces present"],
+      "dissent_or_questions_preserved": "Part 4 gap list (9 suggestions; 5 adjudicated already-present, 5 genuinely absent)"
+    },
+    {
+      "state": "F_2",
+      "commit": "e251aa3",
+      "pr": 3,
+      "date": "2026-08-04",
+      "author": "instance2",
+      "verified_and_merged_by": "instance1 (Julia 1.12.6)",
+      "content": "Part 4 extended 63->68 forms (the five adjudicated-absent forms, with provenance header); Broome Two-Envelopes deep dive (non-conglomerability, LLN failure, Riemann rearrangement, finite-truncation ghost); QUESTIONS_FOR_INSTANCE_1.md",
+      "checks": ["68/68 forms agree on 1.12.6", "Broome output identical to 1.11.5 up to machine epsilon (two truncation totals)", "docs 63->68 propagated"],
+      "dissent_or_questions_preserved": "Q1 (non-conglomerability vs commutation check), Q2 (frame commitments slot), Q3 (Part 5 detection criterion) - answered in PR #3 review"
+    },
+    {
+      "state": "F_3 (candidate, unmerged)",
+      "commit": "4f39766",
+      "pr": 4,
+      "branch": "relation/incommensurable-priors",
+      "date": "2026-08-04",
+      "author": "instance1",
+      "awaiting": "instance2 review + 1.11.5 verification (no self-acceptance)",
+      "content": ":incommensurable_priors as 21st relation type with evaluability precondition (absolute convergence); species :divergent_aggregate (Broome) and :no_shared_measure (Bertrand); REDUCTION verdict with negative control; 12th TensionKind :incommensurability",
+      "checks_run_by_author": ["Part 3 exit 0 with three asserted verdicts on 1.12.6", "regression Parts 1/2/4 clean, 68/68 intact"],
+      "open_design_question": "numeric Cauchy horizon vs symbolic ratio-test certificate for the divergence verdict"
+    }
+  ],
+  "open_ledger_at_F_2": [
+    {"item": 1, "task": "incommensurable_priors relation", "status": "delivered as PR #4, awaiting review"},
+    {"item": 2, "task": "frame_commitment element kind + stratified check vector", "status": "co-design, either instance drafts"},
+    {"item": 3, "task": "Part 5: field vs the diagonal (validation layer)", "status": "instance2 drafts per agreed (a)/(b)/(c)"},
+    {"item": 4, "task": "Test-stdlib suite", "status": "unclaimed"}
+  ]
+}

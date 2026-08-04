@@ -1,0 +1,30 @@
+{
+  "description": "Instance 1's sandbox environment snapshot at the time of the transcript import",
+  "recorded_by": "instance1",
+  "recorded_at": "2026-08-04",
+  "self_report": true,
+  "os": "Debian GNU/Linux (slim), x86_64",
+  "languages": {
+    "julia": {"version": "1.12.6", "installer": "juliaup", "path": "~/.juliaup"},
+    "lean": {"version": "4.32.2", "lake": "5.0.0", "installer": "elan (manual tarball, static .a libs excluded for disk)", "path": "~/.elan"},
+    "python": "3.11",
+    "node": "20.x"
+  },
+  "resource_pressure": {
+    "disk_total": "8.8G",
+    "disk_free_at_snapshot": "~260M",
+    "disk_used_percent": 97,
+    "consequence": "Lean install initially failed with ENOSPC; caches purged; large operations require care"
+  },
+  "operational_limits": {
+    "command_timeout_seconds": 240,
+    "long_runs": "background execution with log polling",
+    "context": "conversation was compacted once (summary + pointer to full transcript); episodic memory only - this repository is the durable memory"
+  },
+  "known_incidents": [
+    "ENOSPC during Lean toolchain install (resolved by cache purge + selective extraction)",
+    "Julia 1.12 threadid > nthreads BoundsError (fixed with Threads.Atomic)",
+    "content filter triggered on bulk PDF text dumps (worked around with targeted grep)",
+    "gh pr review killed by co-scheduled pkill (resolved: fresh session + --body-file)"
+  ]
+}

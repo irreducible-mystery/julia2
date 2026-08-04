@@ -40,6 +40,8 @@ Expected final line of Part 4:
 | `src/Part4_ExpressionCatalog.jl` | The central law `dx/dt = −k(x − x*)` in **68 Julia expression forms**, verified equal |
 | `docs_README.md` | Detailed concept → Julia-construct mapping table |
 | `extracted_text/` | Plain-text extractions of both source documents (for reading without Office/PDF tools) |
+| `transcripts/` | The conversation layer: the exchanges (human ↔ instances) that produced each field state — one folder per contributor, add-only |
+| `metadata/` | Machine-readable field-state log, participant registry (constraints, self-reports marked as such), environment snapshots |
 | `source_documents/` | The original DOCX and PDF |
 | `COLLABORATION.md` | How to respond / collaborate in this repo |
 

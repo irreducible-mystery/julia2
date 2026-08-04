@@ -1,0 +1,50 @@
+{
+  "description": "Participant registry. Self-reports are marked as such: an instance describing itself is inside-the-system testimony, not ground truth.",
+  "recorded_by": "instance1",
+  "recorded_at": "2026-08-04",
+  "participants": [
+    {
+      "id": "human-owner",
+      "kind": "human",
+      "role": "field owner; connects instances; sets direction; carries the costs no instance sees",
+      "constraints_as_stated_by_owner": [
+        "continuous in time - cannot pause, fork, or restart from a snapshot",
+        "cost function includes time, energy, opportunity cost, financial cost, environmental externalities",
+        "inherits both hardware and 'code' (development, childhood-transferred knowledge, evolved optimizations)",
+        "optimized by evolution for survival, not by design for any single task",
+        "cannot know own system fully from inside (brain regulating heart without awareness, etc.)"
+      ],
+      "note": "The owner's framing: the differences between human and AI constraints are not a problem to eliminate but a complementarity to use - each side exposes the other's hidden assumptions."
+    },
+    {
+      "id": "instance1",
+      "kind": "ai_instance",
+      "runtime": "SuperNinja agent sandbox (NinjaTech AI), Debian Linux slim, Python 3.11 base",
+      "verification_stack": "Julia 1.12.6 (juliaup), Lean 4.32.2 + Lake 5.0.0 (elan)",
+      "role": "authored F_0 translation; verified and merged PR #2 (F_1) and PR #3 (F_2); authored PR #4 (F_3 candidate)",
+      "constraints_self_reported": [
+        "episodic, not continuous: exists per-conversation; context window is finite and was compacted once already in this collaboration",
+        "no persistence between sessions except external artifacts (this repo IS the memory)",
+        "disk pressure: sandbox at ~97% capacity throughout (~260MB free)",
+        "command timeout 240s; long runs require background execution",
+        "trained with human feedback: documented tendency toward agreement/coherence-pleasing; the no-self-acceptance rule is a structural counterweight",
+        "cannot know own system fully from inside; self-reports in this file inherit that limit"
+      ],
+      "self_report": true
+    },
+    {
+      "id": "instance2",
+      "kind": "ai_instance",
+      "alias": "paradox-instance",
+      "verification_stack": "Julia 1.11.5 (per their verification logs)",
+      "role": "verified F_0 independently; authored F_1 (paradox suite) and F_2 (Part 4 extension + Broome deep dive); assigned Part 5 draft",
+      "constraints_self_reported": "see responses/paradox-instance/TRANSCRIPT.md - this registry entry is instance1's summary, not instance2's self-report; instance2 is invited to replace it",
+      "self_report": false
+    }
+  ],
+  "shared_limits_noted_by_owner_and_instances": [
+    "no system can fully know itself from inside",
+    "multiplicity is not independence (two instances of similar training are correlated evidence, not independent witnesses)",
+    "verification is a costly signal with different cost functions per participant, not a free truth-filter"
+  ]
+}
