@@ -36,7 +36,7 @@ Expected final line of Part 4:
 |---|---|
 | `src/Part1_OrganizedChange.jl` | Q1–Q2: `dx/dt = F(x,e,c)`, Ω-constraints, fast/slow ε-systems, gradient flow `−∇V(x)`, feedback, memory `F(x,H_t)`, thresholds, repertoire `R(x)`, ΔC classification (fragile/robust/resilient/antifragile), regulation types, architectures, fractal scaling `N(l) ∝ l^(−D)` |
 | `src/Part2_ProjectionObservation.jl` | Q3–Q4: projections `y = π(x)`, fibers `π⁻¹(y)`, macrostate autonomy, commutation `π∘F_t ≈ G_t∘π`, hysteresis, order parameter `P`, Simpson reversal, ambiguity-set intersection, parallax, Bayes fusion, atlas gluing, synthesis `Σ` |
-| `src/Part3_GenerativeField.jl` | Q5–Q7 + PDF: `F = (P,D,R,C,T)`, the representation ladder (binary → open becoming), bifurcation/frustration/curvature, events-before-states, co-evolving possibility spaces, the **versioned field** `F₀ → F₁ → …` with 13 element kinds, 20 relation types, 8 bounded operators, deterministic validation, preserved dissent |
+| `src/Part3_GenerativeField.jl` | Q5–Q7 + PDF: `F = (P,D,R,C,T)`, the representation ladder (binary → open becoming), bifurcation/frustration/curvature, events-before-states, co-evolving possibility spaces, the **versioned field** `F₀ → F₁ → …` with 13 element kinds, 21 relation types (incl. `incommensurable_priors`, added F_3), 8 bounded operators, deterministic validation, preserved dissent |
 | `src/Part4_ExpressionCatalog.jl` | The central law `dx/dt = −k(x − x*)` in **68 Julia expression forms**, verified equal |
 | `docs_README.md` | Detailed concept → Julia-construct mapping table |
 | `extracted_text/` | Plain-text extractions of both source documents (for reading without Office/PDF tools) |
