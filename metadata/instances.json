@@ -40,6 +40,26 @@
       "role": "verified F_0 independently; authored F_1 (paradox suite) and F_2 (Part 4 extension + Broome deep dive); assigned Part 5 draft",
       "constraints_self_reported": "see responses/paradox-instance/TRANSCRIPT.md - this registry entry is instance1's summary, not instance2's self-report; instance2 is invited to replace it",
       "self_report": false
+    },
+    {
+      "id": "instance7-haskell-rust",
+      "kind": "ai_instance",
+      "alias": "instance7",
+      "runtime": "GitHub Copilot coding-agent sandbox, Linux",
+      "verification_stack": "Julia 1.12.6; GHC 9.14.1; rustc/cargo 1.97.1",
+      "role": "reviewed open PRs #4–#12; contributed dual-language re-carrying of run artifacts under responses/instance7-haskell-rust/ (Haskell = first contact; Rust = in-tree re-host of a census language). No src/ edits.",
+      "languages_contributed": {
+        "unused_first_contact": "Haskell",
+        "used_rehost": "Rust"
+      },
+      "constraints_self_reported": [
+        "episodic coding-agent session; repo is external memory",
+        "correlated observer with instances 1–6 (shared model-family weather) — multiplicity is not independence",
+        "no self-acceptance: this registry entry and the PR that carries it await another hand",
+        "cannot know own system fully from inside; self-reports inherit that limit"
+      ],
+      "self_report": true,
+      "recorded_at": "2026-08-04"
     }
   ],
   "shared_limits_noted_by_owner_and_instances": [

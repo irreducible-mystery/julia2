@@ -1,0 +1,134 @@
+GHC version: The Glorious Glasgow Haskell Compilation System, version 9.14.1
+date_utc: 2026-08-04T17:26:35Z
+host: Linux runnervmvrwv9 6.17.0-1020-azure #20~24.04.1-Ubuntu SMP Fri Jun 19 20:09:14 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+GHC version: The Glorious Glasgow Haskell Compilation System, version 9.14.1
+
+══════════════════════════════════════════════════════════════
+  Running Law.hs
+══════════════════════════════════════════════════════════════
+── Haskell carrier: dx/dt = -k(x - x*)  (Part 4 re-carrying) ──
+  test point x0 = 3.0  target F(x0) = -4.0
+
+  ✓  01 top-level equation                    = -4.0
+  ✓  02 where-clause                          = -4.0
+  ✓  03 lambda                                = -4.0
+  ✓  04 point-free composition                = -4.0
+  ✓  05 composition (repeat writing)          = -4.0
+  ✓  06 Endo mconcat ops                      = -4.0
+  ✓  07 foldl' op sequence                    = -4.0
+  ✓  08 guards                                = -4.0
+  ✓  09 Regime sum-type dispatch              = -4.0
+  ✓  10 type-class Regulate                   = -4.0
+  ✓  11 newtype Flow record                   = -4.0
+  ✓  12 Maybe case                            = -4.0
+  ✓  13 Either case                           = -4.0
+  ✓  14 list comprehension                    = -4.0
+  ✓  15 map singleton                         = -4.0
+  ✓  16 Applicative liftA2                    = -4.0
+  ✓  17 monadic do over []                    = -4.0
+  ✓  18 recursion wrapper                     = -4.0
+  ✓  19 foldM Either                          = -4.0
+  ✓  20 operator sections                     = -4.0
+  ✓  21 1x1 linear map                        = -4.0
+  ✓  22 Rational intermediate                 = -4.0
+  ✓  23 Complex real part                     = -4.0
+  ✓  24 tuple destructuring                   = -4.0
+  ✓  25 assoc-list dict-of-functions          = -4.0
+
+  25/25 Haskell organizations agree:  F(3.0) = -4.0
+  (Berry note: 25 is a Haskell spelling count, not an invariant.)
+
+══════════════════════════════════════════════════════════════
+  Running Paradox.hs
+══════════════════════════════════════════════════════════════
+── Haskell carrier: antinomy exhibits (re-carrying) ──
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — classical fixed-point search
+══════════════════════════════════════════════════════════════════════
+    {v ∈ {True,False} : v == not v} = []
+    ← EMPTY: no classical truth value
+  VERDICT: ANTINOMY — does not resolve classically
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — fuel-bounded regress (host-honest divergence)
+══════════════════════════════════════════════════════════════════════
+    fuelLiar 10000 → 💥 infinite regress — sentence never grounds
+  VERDICT: ANTINOMY — host shows divergence only under a fuel budget (no Task stack)
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — K3 escape via Maybe (Nothing = missing)
+══════════════════════════════════════════════════════════════════════
+    k3not Nothing == Nothing : True
+    ← Nothing is the unique K3 fixed point of negation
+    …but the Strengthened Liar («not even Nothing») re-erupts:
+    {v ∈ K3 : v ≠ Nothing ∧ v == k3not v} = []
+    ← EMPTY again one level up (Tarski rent)
+  VERDICT: DISPLACED, not resolved — K3 buys a fixed point, pays a meta-liar
+
+══════════════════════════════════════════════════════════════════════
+  CURRY vs LIAR on K3 (instance6 gate-gap exhibit)
+══════════════════════════════════════════════════════════════════════
+    curryOp ≡ liarOp on K3 (consequent=False): True
+    ← A Curry row that uses (¬x ∨ ⊥) tests the Liar twice under two names.
+    Coverage of the hard Curry (with contraction) is asserted, not shown.
+  VERDICT: TENSION — gate labels ≠ gate extensions (PR #9 §2 replication on Haskell)
+
+══════════════════════════════════════════════════════════════════════
+  TRUTH-TELLER dial: T ≡ T  under two grounded policies
+══════════════════════════════════════════════════════════════════════
+    Kripke-LFP truth-teller : Nothing
+    WFS-style truth-teller  : Just False
+    agree? False
+    ← Same sentence, two least-fixed-point operators, two values.
+    (PR #9 tension, re-hosted. Dial exists; boundary not swept here.)
+  VERDICT: FRAME-RELATIVE — truth-teller value is a policy choice, not a fact
+
+══════════════════════════════════════════════════════════════════════
+  QUINE shape without the bang (harmless self-ref)
+══════════════════════════════════════════════════════════════════════
+    desc sample == sample : True
+    Self-reference without negation is idle — the bang installs the antinomy.
+  VERDICT: CONTROL — diagonal without negation does not explode
+
+── end paradox carrier ──
+
+══════════════════════════════════════════════════════════════
+  Running Aggregate.hs
+══════════════════════════════════════════════════════════════
+── Haskell carrier: aggregate evaluability (horizon vs ratio) ──
+  Re-carrying the PR #4 / PR #12 tension without touching src/.
+
+  Horizon parameters: N=400  tol=1e-10  (last-term only)
+
+  Horizon verdicts (evaluable? | sAbs):
+    Basel Σ1/n²        : False  sAbs=1.642437
+    Geometric (1/2)^n  : True  sAbs=1.000000
+    Harmonic  Σ1/n     : False  sAbs=6.569930
+    Broome-like (4/3)^n: False  sAbs=3.780547e50
+    Packed-div N=400   : True   (even N, last term = 0)
+    Packed-div N=401   : False   (odd N, last term huge)
+
+  Ratio certificates (property of the series, not of N):
+    Basel ratio → 1     : Inconclusive (inconclusive — needs integral/Cauchy cond.)
+    Geometric ratio 1/2 : Convergent
+    Broome ratio 4/3    : Divergent
+
+  Assertions (the PR #12 shape, host-independent):
+  ✓  H-incomplete: Basel rejected while geometric accepted (same absolute-convergence class)
+  ✓  H-parity: packed divergent series flips verdict when N parity flips
+  ✓  R-sound: Broome ratio 4/3 certifies divergence (no horizon)
+  ✓  R-positive: geometric ratio 1/2 certifies convergence
+  ✓  H-Basel-reject: documents incompleteness of last-term horizon at these params
+
+  Reading (preserved dissent, not a merge):
+    • A last-term Cauchy horizon is a property of (series, N, tol, parity).
+    • A ratio bound is a property of the series (given n ≥ n0).
+    • PR #4's open question resolves in the direction PR #12 names:
+      ratio-test fast path is sound where the horizon is not.
+    • Acceptance of any src/ repair remains another instance's hand.
+
+  5/5 aggregate exhibits hold.
+
+✓ All Haskell carriers completed successfully.
