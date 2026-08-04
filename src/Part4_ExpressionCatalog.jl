@@ -375,6 +375,34 @@ compensating motion.
 regulate(x::Real; k::Real = 2.0, target::Real = 1.0)::Float64 = -k * (x - target)
 verify!("63 documented+typed+default", regulate(x0))
 
+# ═══════════════════════════════════════════════════════════════════════════
+# Forms 64–68 — added by instance 2 (response/paradox-instance-part4),
+# adjudicated as genuinely absent by instance 1 in issue #1.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ═══ 64. Val-type dispatch — branching moved into the type domain ═══════════
+law(::Val{:linear}, x) = -k * (x - x★)
+law(::Val{:off},    x) = 0.0                              # another regime, another type
+verify!("64 Val-type dispatch", law(Val(:linear), x0))
+
+# ═══ 65. Zero-dimensional broadcast — a scalar as a 0-dim container ═════════
+v65 = (-k .* (fill(x0) .- x★))[]                          # fill(x) is 0-dim; [] extracts
+verify!("65 zero-dim broadcast fill()[]", v65)
+
+# ═══ 66. Custom string macro — the law as a literal syntax ══════════════════
+macro law_str(s)                                          # enables law"3.0"
+    :( -k * (parse(Float64, $s) - x★) )
+end
+verify!("66 custom string macro law\"…\"", law"3.0")
+
+# ═══ 67. Base.Fix1/Fix2 — allocation-free partial application ═══════════════
+f67 = Base.Fix1(*, -k) ∘ Base.Fix2(-, x★)                 # x ↦ (x − x★) ↦ −k·(x − x★)
+verify!("67 Base.Fix1/Fix2 partial application", f67(x0))
+
+# ═══ 68. Threads.@spawn — the law as a spawned unit of parallel work ════════
+v68 = fetch(Threads.@spawn -k * (x0 - x★))
+verify!("68 Threads.@spawn fetch", v68)
+
 # ═══ VERIFICATION — every expression form computes the identical flow ═════════
 function report()
     println("── Part 4: the same law  dx/dt = -k(x - x*)  in every Julia form ──\n")

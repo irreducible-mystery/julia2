@@ -10,7 +10,7 @@ Source documents:
 
 Everything mathematical/structural in both documents is translated into **runnable
 Julia**, and — per your request — the translation deliberately exercises **every
-expression form the Julia language permits** (63 distinct syntactic constructs,
+expression form the Julia language permits** (68 distinct syntactic constructs,
 verified to compute the identical result in Part 4).
 
 ## Files
@@ -20,9 +20,9 @@ verified to compute the identical result in Part 4).
 | `Part1_OrganizedChange.jl` | Q1–Q2: `dx/dt = F(x,e,c)`, Ω-constraints, fast/slow `ε`-systems, sequencing, gradient flow `dx/dt = −∇V(x)`, self-modifying landscapes, feedback, anticipation, memory `F(x,H_t)`, thresholds, restoration, repertoire `R(x)`, ΔC classification (fragile/robust/resilient/antifragile/transformative/collapse), regulation types, architectures (hierarchy…fractal `N(l) ∝ l^(−D)`) | `julia Part1_OrganizedChange.jl` |
 | `Part2_ProjectionObservation.jl` | Q3–Q4: projections `y = π(x)`, fibers `π⁻¹(y)`, macrostate autonomy `dy/dt = G(y)`, commutation `π∘F_t ≈ G_t∘π`, shadow crossings, thresholds-as-categories, hysteresis, noise from hidden variables, `B = Φ(M,N,E,H)`, mean vs organization, order parameter `P`, connected correlations, Simpson reversal, joint observation `Π(x)`, ambiguity-set intersection, parallax, Bayes fusion `p(x|y₁…yₙ)`, atlas gluing, synthesis map `Σ` | `julia Part2_ProjectionObservation.jl` |
 | `Part3_GenerativeField.jl` | Q5–Q7 + PDF: binary → multitude → structured field `F = (P,D,R,C,T)` → generative → reflexive; positions as regions/distributions; five field geometries; seams/holes/curvature/bifurcation/frustration; events `x₁--f₁-->x₂`; possibility fields; generated dimensions `Fₙ → Fₙ₊₁`; coupled observer `y = π(x,o)`; **the versioned field**: element kinds, 20 relation types, `contradicts_under` with conditions, tension typing, bounded operators (Reflector, AssumptionMap, TensionTyper, Counterexample, BridgeBuilder, DifferencePreserver, Synthesizer, FieldAuditor), deterministic checks, independent acceptance, `F₀ → F₁ → …` with preserved dissent | `julia Part3_GenerativeField.jl` |
-| `Part4_ExpressionCatalog.jl` | **The expression catalog**: the documents' central law `dx/dt = −k(x − x*)` written in **63 distinct Julia expression forms**, all verified to compute the same value | `julia -t 2 Part4_ExpressionCatalog.jl` |
+| `Part4_ExpressionCatalog.jl` | **The expression catalog**: the documents' central law `dx/dt = −k(x − x*)` written in **68 distinct Julia expression forms**, all verified to compute the same value | `julia -t 2 Part4_ExpressionCatalog.jl` |
 
-## The 63 expression forms (Part 4)
+## The 68 expression forms (Part 4)
 
 Function definitions: assignment-form · `function…end` · implicit return · `->` lambda ·
 anonymous `function` · `do`-block · composition `∘` · pipe `|>` · closures · keyword args ·
@@ -45,6 +45,10 @@ numeric-literal juxtaposition `2.0(x−1)` · iterator protocol.
 Metaprogramming & concurrency: quoted expressions + `eval` · user-defined macros ·
 `@generated` functions · `@evalpoly` · Channels/coroutines · `@async` tasks · `@threads` loops
 with atomics.
+
+Forms 64–68 (added in F_2 by instance 2, adjudicated by instance 1 in issue #1):
+`Val`-type dispatch · zero-dim broadcast `fill(x)[]` · custom string macros `law"…"` ·
+`Base.Fix1`/`Fix2` partial application · `Threads.@spawn`+`fetch`.
 
 ## Concept → construct mapping (highlights)
 

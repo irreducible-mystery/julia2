@@ -1,0 +1,107 @@
+
+══════════════════════════════════════════════════════════════════════
+  1. THE ANALYTIC HEART — conditional gain is positive EVERYWHERE
+══════════════════════════════════════════════════════════════════════
+    Observed A = 2^n. Posterior P(you hold the SMALL one | A):
+    n = 0:  P(small) = 1        E[gain | switch] = +1
+    n = 1:  P(small) = 0.4000   E[gain | A = 2    ] =  +0.2000  (= A/10)
+    n = 2:  P(small) = 0.4000   E[gain | A = 4    ] =  +0.4000  (= A/10)
+    n = 3:  P(small) = 0.4000   E[gain | A = 8    ] =  +0.8000  (= A/10)
+    n = 4:  P(small) = 0.4000   E[gain | A = 16   ] =  +1.6000  (= A/10)
+    n = 5:  P(small) = 0.4000   E[gain | A = 32   ] =  +3.2000  (= A/10)
+    n = 6:  P(small) = 0.4000   E[gain | A = 64   ] =  +6.4000  (= A/10)
+    ⇒ For EVERY possible observation, switching has expected gain A/10 > 0.
+      By symmetry the other player computes the same. Both «should» switch.
+      Both cannot be right. And yet no single conditional step is wrong.
+
+══════════════════════════════════════════════════════════════════════
+  2. SIMULATION — conditional advice vs unconditional truth
+══════════════════════════════════════════════════════════════════════
+    Conditional mean gain from switching, per observed amount:
+             A        count        mean gain  theory (A/10)
+             1       332538          +1.0000         +1.000
+             2       555425          +0.1970         +0.200
+             4       371454          +0.3993         +0.400
+             8       246738          +0.7999         +0.800
+            16       165159          +1.6131         +1.600
+            32       109307          +3.1689         +3.200
+            64        73448          +6.3501         +6.400
+           128        48495         +13.2989        +12.800
+    Every conditional row matches theory: «switch» is locally right everywhere.
+
+    Pooled unconditional mean gain, five independent seeds (500k trials each):
+          +25293.01      -605.67  +2127836.15    +19699.12    +21060.94
+    — wildly unstable: with E[amount] = ∞ the sample mean never converges;
+      single freak deep-tail pairs dominate entire runs (LLN inapplicable).
+
+    Exact two-player ledger (both switch, per-trial cancellation): 0.0  — switching is unconditionally worthless, PROVABLY.
+    Every row says «switch». The exact pool says «it cannot matter».
+
+══════════════════════════════════════════════════════════════════════
+  3. THE DIAGNOSIS — non-conglomerability, computed
+══════════════════════════════════════════════════════════════════════
+    Σ over observation-cells of P(A)·E[gain | A]  (partial sums):
+      through n =  0:     0.16667
+      through n =  1:     0.23611
+      through n =  2:     0.32870
+      through n =  5:     0.83625
+      through n = 10:     3.65786
+      through n = 20:    65.65351
+      through n = 30:  1166.55535
+    → the by-observation sum DIVERGES to +∞,
+      while the same sum organized by PAIRS is 0 by symmetry:
+      Σ over pairs of p(n)·E[gain | pair n] = 0.0
+
+    Two partitions of the SAME event space give different «totals»
+    because E[amount] DIVERGES — the honest divergence certificate:
+      E[amount] = Σ term(n),  term ratio term(n+1)/term(n) = 1.3333  = 4/3 > 1 ⇒ terms GROW
+      partial sum through n = 10:           34.02
+      partial sum through n = 30:        11197.83
+      partial sum through n = 60:     62712509.78
+      With E[amount] = ∞, E[gain]'s positive and negative parts are
+      each infinite; their «difference» is an ∞ − ∞ ledger whose value
+      depends on summation order — Riemann's rearrangement theorem
+      is the engine under the paradox.
+
+══════════════════════════════════════════════════════════════════════
+  4. RIEMANN REARRANGEMENT — the same series, any answer you like
+══════════════════════════════════════════════════════════════════════
+    rearranged to target  0.00000 → partial sum settles at  0.00002
+    rearranged to target  1.00000 → partial sum settles at  0.99999
+    rearranged to target  0.69315 → partial sum settles at  0.69314
+    rearranged to target  3.14159 → partial sum settles at  3.14086
+    A conditionally convergent ledger has no observer-independent total —
+    «the value of switching» in Broome's game is exactly such a ledger.
+
+══════════════════════════════════════════════════════════════════════
+  5. WHERE IT LANDS — what resolves, what remains
+══════════════════════════════════════════════════════════════════════
+RESOLVED (theorem-level):
+  • No paradox in any FINITE truncation: cap the pairs at n ≤ N and
+    the top observation A = 2^(N+1) is CERTAINLY the large envelope —
+    its guaranteed loss exactly cancels the whole interior advantage:
+        N =  5:  interior advantage   +0.7699  boundary cell   -0.7699  total +1.11e-16
+        N = 10:  interior advantage   +2.9942  boundary cell   -2.9942  total -4.44e-16
+        N = 20:  interior advantage  +52.5667  boundary cell  -52.5667  total +7.11e-15
+        The «paradox» is the boundary term surviving the N → ∞ limit
+        as a ghost: it never appears at any finite A, yet its weight×size
+        does not vanish.
+  • The «always switch» ARGUMENT is invalid: it applies conglomerability
+    to a non-conglomerable expectation. That step, and only that step,
+    is the formal error.
+
+NOT RESOLVED (still contested in the literature):
+  • What should a rational agent DO facing a genuinely infinite-mean
+    prior, observing A, with positive conditional gain at every A?
+    Answers on offer — forbid such priors (finitism), abandon
+    expectation as the decision criterion (bounded utility, medians),
+    accept non-conglomerable «local» advice as rational — each gives
+    up something. This is the same shape as the Sorites verdict:
+    NO NEUTRAL RESOLUTION; you choose which intuition to sacrifice.
+
+Field-note for this repo: this is the cleanest concrete case for the
+proposed `incommensurable_priors` relation — the two partitions
+(by-amount vs by-pair) are two projections π₁, π₂ of one microstate
+space whose induced expectations DISAGREE, and no finer common
+refinement restores agreement while the mean diverges. In Part 2's
+language: the commutation diagram π∘F ≈ G∘π fails non-removably.

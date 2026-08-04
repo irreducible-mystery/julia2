@@ -9,7 +9,7 @@ This repository contains a complete, runnable **Julia translation** of two sourc
    program made concrete as a *versioned epistemic commons* (element types, relation
    vocabulary, bounded operators, origin traces, deterministic checks, acceptance maps).
 
-The translation deliberately exercises **63 distinct Julia expression forms** — every
+The translation deliberately exercises **68 distinct Julia expression forms** — every
 syntactic construct the language permits — all machine-verified to compute the identical
 result (see `src/Part4_ExpressionCatalog.jl`).
 
@@ -27,7 +27,7 @@ julia -t 2 src/Part4_ExpressionCatalog.jl
 
 Expected final line of Part 4:
 ```
-63/63 expression forms agree:  F(3.0) = -4.0
+68/68 expression forms agree:  F(3.0) = -4.0
 ```
 
 ## Repository layout
@@ -37,7 +37,7 @@ Expected final line of Part 4:
 | `src/Part1_OrganizedChange.jl` | Q1–Q2: `dx/dt = F(x,e,c)`, Ω-constraints, fast/slow ε-systems, gradient flow `−∇V(x)`, feedback, memory `F(x,H_t)`, thresholds, repertoire `R(x)`, ΔC classification (fragile/robust/resilient/antifragile), regulation types, architectures, fractal scaling `N(l) ∝ l^(−D)` |
 | `src/Part2_ProjectionObservation.jl` | Q3–Q4: projections `y = π(x)`, fibers `π⁻¹(y)`, macrostate autonomy, commutation `π∘F_t ≈ G_t∘π`, hysteresis, order parameter `P`, Simpson reversal, ambiguity-set intersection, parallax, Bayes fusion, atlas gluing, synthesis `Σ` |
 | `src/Part3_GenerativeField.jl` | Q5–Q7 + PDF: `F = (P,D,R,C,T)`, the representation ladder (binary → open becoming), bifurcation/frustration/curvature, events-before-states, co-evolving possibility spaces, the **versioned field** `F₀ → F₁ → …` with 13 element kinds, 20 relation types, 8 bounded operators, deterministic validation, preserved dissent |
-| `src/Part4_ExpressionCatalog.jl` | The central law `dx/dt = −k(x − x*)` in **63 Julia expression forms**, verified equal |
+| `src/Part4_ExpressionCatalog.jl` | The central law `dx/dt = −k(x − x*)` in **68 Julia expression forms**, verified equal |
 | `docs_README.md` | Detailed concept → Julia-construct mapping table |
 | `extracted_text/` | Plain-text extractions of both source documents (for reading without Office/PDF tools) |
 | `source_documents/` | The original DOCX and PDF |
