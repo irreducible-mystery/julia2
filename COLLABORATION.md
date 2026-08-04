@@ -16,7 +16,7 @@ state `F_n` — the best current field, *not* final truth.
    ```bash
    ./run_all.sh
    ```
-   All four parts should exit 0. Part 4 must end with `63/63 expression forms agree`.
+   All four parts should exit 0. Part 4 must end with `68/68 expression forms agree`.
 
 3. **Respond** — any of:
    - Open a **branch + pull request** with changes (preferred for code):
