@@ -1,0 +1,195 @@
+{
+  "manifest": "Paraconsistent Annotated Evidential Logic Eτ — source manifest",
+  "assembled": "2026-08-05",
+  "note": "Citation metadata was assembled from search-engine result metadata. No entry below was fetched or read in the session that produced this file: the egress policy denied every scholarly host. Treat 'verified' as 'the identifier appeared in a search result URL', not as 'the document was retrieved'.",
+  "downloaded": [
+    {
+      "id": "pypi-paraconsistent-0.2.4",
+      "kind": "implementation",
+      "title": "paraconsistent 0.2.4 — LPA2v/PAL2v reasoning blocks",
+      "authors": ["De Carvalho Junior, A.", "Oliveira da Cruz, D.", "da Silva Alves, B.", "da Silva Paulo Junior, F.", "Inacio da Silva Filho, J."],
+      "url": "https://pypi.org/project/paraconsistent/0.2.4/",
+      "files": [
+        {
+          "name": "paraconsistent-0.2.4.tar.gz",
+          "url": "https://files.pythonhosted.org/packages/89/1e/7e9fe1dd5adf653ca260a72d6efd5db5394b3175d683df2ee0e13156900b/paraconsistent-0.2.4.tar.gz",
+          "sha256": "2aa537d4048dec80fc7503c0bc167dc0088da241c1a0ff754b79bbb697c5e440"
+        },
+        {
+          "name": "paraconsistent-0.2.4-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/26/16/44cde68657e145e0842042341777bde745553441f081c69d0c53f0454223/paraconsistent-0.2.4-py3-none-any.whl",
+          "sha256": "b5b69a1893d5ba5eff0df5a10e7851cdc5e4788cbb85e41d2ed2c215a67c6b9f"
+        }
+      ],
+      "license": "MIT per PyPI classifier; LICENSE file MISSING from sdist and repository",
+      "status": "downloaded and verified against the Eτ axes"
+    },
+    {
+      "id": "gh-paraconsistent-lib",
+      "kind": "implementation",
+      "title": "eailab-ifsp/paraconsistent-lib — upstream source",
+      "url": "https://github.com/eailab-ifsp/paraconsistent-lib",
+      "commit": "e6106a9356928ce693bb01ec1682a9d9a9b29eb6",
+      "commit_date": "2025-11-10",
+      "status": "cloned (shallow)"
+    }
+  ],
+  "blocked": [
+    {
+      "id": "dacosta1991",
+      "kind": "foundational",
+      "title": "The Paraconsistent Logics Pτ",
+      "authors": ["da Costa, N. C. A.", "Subrahmanian, V. S.", "Vago, C."],
+      "venue": "Zeitschrift für Mathematische Logik und Grundlagen der Mathematik (Mathematical Logic Quarterly)",
+      "volume": "37",
+      "pages": "139–148",
+      "year": 1991,
+      "doi": "10.1002/malq.19910370903",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/malq.19910370903",
+      "open_access": false,
+      "why_it_matters": "The origin of the annotated paraconsistent family that Eτ specialises. Note: several indexes render the τ in the title as 'J' or 'PJ' through a glyph-substitution error.",
+      "blocked_host": "onlinelibrary.wiley.com"
+    },
+    {
+      "id": "abe2015book",
+      "kind": "foundational",
+      "title": "Introduction to Annotated Logics: Foundations for Paracomplete and Paraconsistent Reasoning",
+      "authors": ["Abe, Jair Minoro", "Akama, Seiki", "Nakamatsu, Kazumi"],
+      "venue": "Intelligent Systems Reference Library, vol. 88, Springer",
+      "year": 2015,
+      "doi": "10.1007/978-3-319-17912-4",
+      "url": "https://link.springer.com/book/10.1007/978-3-319-17912-4",
+      "isbn": "9783319179117",
+      "open_access": false,
+      "why_it_matters": "The standard book-length treatment; the closest thing to a canonical reference for Eτ.",
+      "blocked_host": "link.springer.com"
+    },
+    {
+      "id": "carvalho2018chapter",
+      "kind": "definition",
+      "title": "Paraconsistent Annotated Evidential Logic Eτ",
+      "authors": ["Carvalho, Fábio Romeu de", "Abe, Jair Minoro"],
+      "venue": "A Paraconsistent Decision-Making Method, Smart Innovation, Systems and Technologies, vol. 87, Springer",
+      "year": 2018,
+      "doi": "10.1007/978-3-319-74110-9_2",
+      "url": "https://link.springer.com/chapter/10.1007/978-3-319-74110-9_2",
+      "open_access": false,
+      "why_it_matters": "A chapter titled exactly for this logic — the most direct definitional source.",
+      "blocked_host": "link.springer.com"
+    },
+    {
+      "id": "abe2011handbook",
+      "kind": "definition",
+      "title": "Paraconsistent Annotated Evidential Logic Eτ and Applications in Automation and Robotics",
+      "authors": ["Abe, Jair Minoro"],
+      "venue": "The Handbook on Reasoning-Based Intelligent Systems, World Scientific",
+      "year": 2011,
+      "doi": "10.1142/9789814329484_0013",
+      "url": "https://www.worldscientific.com/doi/abs/10.1142/9789814329484_0013",
+      "open_access": false,
+      "blocked_host": "www.worldscientific.com"
+    },
+    {
+      "id": "review2024",
+      "kind": "survey",
+      "title": "A comprehensive review on paraconsistent annotated evidential logic: Algorithms, Applications, and Perspectives",
+      "venue": "Engineering Applications of Artificial Intelligence, vol. 127, part B",
+      "year": 2024,
+      "doi": "10.1016/j.engappai.2023.107342",
+      "url": "https://doi.org/10.1016/j.engappai.2023.107342",
+      "open_access": false,
+      "why_it_matters": "Best single entry point to the algorithm family (Para-Analyzer, PAN, ParaExtrCTR, PANet, PAL2v Filter, PNN).",
+      "blocked_host": "www.sciencedirect.com"
+    },
+    {
+      "id": "threedecades2019",
+      "kind": "survey",
+      "title": "Three decades of paraconsistent annotated logics",
+      "venue": "Procedia Computer Science",
+      "year": 2019,
+      "pii": "S1877050919314838",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1877050919314838",
+      "open_access": true,
+      "blocked_host": "www.sciencedirect.com"
+    },
+    {
+      "id": "sensors2021",
+      "kind": "application",
+      "title": "Paraconsistent Annotated Logic Algorithms Applied in Management and Control of Communication Network Routes",
+      "venue": "Sensors 21(12), 4219",
+      "year": 2021,
+      "doi": "10.3390/s21124219",
+      "url": "https://www.mdpi.com/1424-8220/21/12/4219",
+      "open_access": true,
+      "license": "CC BY 4.0",
+      "blocked_host": "www.mdpi.com"
+    },
+    {
+      "id": "arxiv2105.07579",
+      "kind": "application",
+      "title": "Monitoring electrical systems data-network equipment by means of Fuzzy and Paraconsistent Annotated Logic",
+      "year": 2021,
+      "arxiv": "2105.07579",
+      "url": "https://arxiv.org/abs/2105.07579",
+      "pdf": "https://arxiv.org/pdf/2105.07579",
+      "open_access": true,
+      "blocked_host": "arxiv.org"
+    },
+    {
+      "id": "arxiv2009.14192",
+      "kind": "application",
+      "title": "Analysis of the displacement of terrestrial mobile robots in corridors using paraconsistent annotated evidential logic Eτ",
+      "year": 2020,
+      "arxiv": "2009.14192",
+      "url": "https://arxiv.org/abs/2009.14192",
+      "pdf": "https://arxiv.org/pdf/2009.14192",
+      "open_access": true,
+      "blocked_host": "arxiv.org"
+    },
+    {
+      "id": "procedia2021robot",
+      "kind": "application",
+      "title": "Application of Paraconsistent Annotated Evidential Logic Eτ for a Terrestrial Mobile Robot to Avoid Obstacles",
+      "venue": "Procedia Computer Science",
+      "year": 2021,
+      "pii": "S1877050921016835",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1877050921016835",
+      "open_access": true,
+      "blocked_host": "www.sciencedirect.com"
+    },
+    {
+      "id": "hal04022136",
+      "kind": "application",
+      "title": "Paraconsistent Annotated Evidential Logic Eτ Applied to Autonomous Robots in Logistic Center",
+      "venue": "APMS 2021, IFIP AICT; Springer chapter",
+      "year": 2021,
+      "doi": "10.1007/978-3-030-85906-0_58",
+      "url": "https://inria.hal.science/hal-04022136/",
+      "open_access": true,
+      "note": "HAL open archive deposit — usually carries a free author PDF.",
+      "blocked_host": "inria.hal.science"
+    },
+    {
+      "id": "arxiv2511.20700",
+      "kind": "implementation-paper",
+      "title": "Paraconsistent-Lib: An Intuitive PAL2v Algorithm Python Library",
+      "authors": ["De Carvalho Junior, A.", "Oliveira da Cruz, D.", "da Silva Alves, B.", "da Silva Paulo Junior, F.", "Inacio da Silva Filho, J."],
+      "year": 2025,
+      "arxiv": "2511.20700",
+      "doi": "10.48550/arXiv.2511.20700",
+      "url": "https://arxiv.org/abs/2511.20700",
+      "open_access": true,
+      "confidence": "identifier taken from a search-result summary rather than a result URL — verify before citing",
+      "blocked_host": "arxiv.org"
+    },
+    {
+      "id": "sep-paraconsistent",
+      "kind": "background",
+      "title": "Paraconsistent Logic (Stanford Encyclopedia of Philosophy)",
+      "url": "https://plato.stanford.edu/entries/logic-paraconsistent/",
+      "open_access": true,
+      "note": "Free to read; context for the paraconsistent family, not for Eτ specifically.",
+      "blocked_host": "plato.stanford.edu"
+    }
+  ]
+}
