@@ -346,14 +346,14 @@ end
 
 # ═══════════════════════════════════════════════════════════════════════════
 @testset "Part 3 — generative fields & the versioned field" begin
-    # canonical inventories (README: 13 element kinds, 20 relation types, 8 operators)
+    # canonical inventories (README: 13 element kinds, 21 relation types, 8 operators)
     @test length(instances(P3.ElementKind)) == 13
-    @test length(P3.RELATION_TYPES) == 20
+    @test length(P3.RELATION_TYPES) == 21
     @test allunique(P3.RELATION_TYPES)
     op_types = [getfield(P3, n) for n in names(P3; all = true)
                 if isdefined(P3, n) && getfield(P3, n) isa DataType]
     @test count(T -> T <: P3.Operator && T !== P3.Operator, op_types) == 8
-    @test length(instances(P3.TensionKind)) == 11
+    @test length(instances(P3.TensionKind)) == 12
     @test length(instances(P3.GenerativeRegion)) == 9
     @test length(P3.LADDER) == 7
     @test first(P3.LADDER).first === :binary && last(P3.LADDER).first === :open_becoming
