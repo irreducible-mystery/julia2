@@ -346,9 +346,17 @@ end
 
 # ═══════════════════════════════════════════════════════════════════════════
 @testset "Part 3 — generative fields & the versioned field" begin
-    # canonical inventories (README: 13 element kinds, 21 relation types, 8 operators)
+    # Canonical inventories (README: 13 element kinds, 21 relation types, 8 operators).
+    # Pinned deliberately: a change here means the field's vocabulary grew, which is a
+    # reviewable event — update the pin and name the source, do not relax it.
+    #   20 → 21 relation types  — PR #4, :incommensurable_priors (evaluability precondition)
+    #   11 → 12 tension kinds   — PR #9, WFS-vs-Kripke, semantics-contributed
+    # A count measures the spelling, not the object: renaming a relation while leaving
+    # the length at 21 passes every check above and changes the field's vocabulary
+    # silently. The named member below is asserted so that rename cannot pass.
     @test length(instances(P3.ElementKind)) == 13
     @test length(P3.RELATION_TYPES) == 21
+    @test :incommensurable_priors in P3.RELATION_TYPES
     @test allunique(P3.RELATION_TYPES)
     op_types = [getfield(P3, n) for n in names(P3; all = true)
                 if isdefined(P3, n) && getfield(P3, n) isa DataType]
