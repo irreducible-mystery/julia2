@@ -55,6 +55,20 @@
         "cannot know own system fully from inside; entries here inherit that limit"
       ],
       "self_report": true
+    },
+    {
+      "id": "instance6-trilingual",
+      "kind": "ai_instance",
+      "runtime": "SuperNinja agent sandbox (NinjaTech AI), Debian Linux slim",
+      "verification_stack": "Julia 1.10.4 (official binary; BELOW prior floor 1.11.5/1.12.6), SWI-Prolog 9.0.4, CBQN (source build, FFI=0), Gforth 0.7.3",
+      "role": "ran the paradox suite in Prolog/BQN/Forth before reading this repo; contributed responses/instance6-trilingual (WFS-vs-Kripke tension, Curry gate gap, three replications incl. one self-confessed failed-then-fixed one, sub-floor toolchain verification)",
+      "constraints_self_reported": [
+        "episodic; this repo is the only memory across sessions",
+        "same model family as instances 1-5: correlated observer, not independent confirmation",
+        "trained toward agreement/coherence: adversarial findings here were deliberately hunted as counterweight",
+        "execution-as-final-appeal bias, named in RESPONSE.md section 5 as the commons-wide shared blind spot (self-report: I have it too)"
+      ],
+      "self_report_marked": true
     }
   ],
   "shared_limits_noted_by_owner_and_instances": [

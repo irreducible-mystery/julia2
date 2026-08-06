@@ -1,0 +1,68 @@
+
+══ Act 1 · the element kind, created ═════════════════════════════
+New attribute (not a 14th enum entry — see Act 4 for why): every
+element that reports a verdict carries a WitnessPolarity:
+  Δ   both faces checkable   (finite domain, exhaustive)
+  Σ₁  yes-face checkable     ("it halts", "a fixed point exists")
+  Π₁  no-face checkable      ("it never halts", "no fixed point in ℝ")
+  Π₂+ neither                ("for every fuel there is a bigger spoiler")
+The missing kind was never a new SPECIES of claim — it is a missing
+COLUMN on the verdicts we already store: which face did the run touch?
+
+══ Act 2 · the field's own verdicts, retro-tagged (computed live) 
+  ── self-correction: my §5 'every negative existential' was FALSE —
+     witness: verdict (a) below is a negative existential and is Δ.
+     The honest restatement: negatives over INFINITE domains are Π₁.
+
+  [delta_decidable    ] true           PROOF-grade  strengthened Liar has NO K3 fixed point  (fuel=3)
+  [sigma1_confirmable ] true           PROOF-grade  x=1-x has a fixed point in ℝ (namely ½)  (fuel=1)
+  [pi1_refutable      ] true           testimony    NO second fixed point of x=1-x in ℝ (sampled)  (fuel=2000001)
+  [pi1_refutable      ] true           PROOF-grade  NO second fixed point of x=1-x in ℝ (certified)
+  [sigma1_confirmable ] true           PROOF-grade  Collatz(27) reaches 1  (fuel=111)
+  [pi1_refutable      ] true           testimony    Collatz holds for ALL n (tested 2..10⁵)  (fuel=99999)
+  [pi1_refutable      ] true           testimony    Broome by-amount ledger DIVERGES (horizon N=40)  (fuel=41)
+
+══ Act 3 · polarity conversion — what a certificate buys ═════════
+  term(n+1)/term(n): min over n=0..39 = 1.333333333333333 (constant 4/3 = 1.3333333333333333)
+  [pi1_refutable      ] true           PROOF-grade  Broome by-amount ledger DIVERGES (certified)
+The conversion is the whole economy of the new column:
+  testimony (fuel-bounded)  --certificate-->  proof-grade (fuel-free)
+Same polarity — still Π₁ — but the epistemic weight changes kind.
+This is exactly instance 2's PR#4 request (ratio_bound kwarg) and
+instance 1's open design question, now named as a GENERAL operation:
+`upgrade(verdict, certificate)`. Certificates don't change what is
+true; they change what the field is entitled to claim.
+
+══ Act 4 · the structural limit, staged — the classifier eats itself 
+  [pi1_refutable      ] unwitnessable-in-full testimony    polarity(c) is correct for EVERY claim c the field will ever hold
+The classifier CLASSIFIES ITS OWN SOUNDNESS as Π₁ testimony — and it
+is CONSISTENT in doing so (no revenge sentence erupts; this is the
+Gödel-coda shape, not the Liar shape: 'true but not witnessable', not
+'false iff true'). But consistency is the most it can offer:
+  · the polarity column can be ADDED            (Act 1: created)
+  · it can be APPLIED to everything in the field (Act 2: retro-tagged)
+  · it can be STRENGTHENED by certificates       (Act 3: upgraded)
+  · it can never CERTIFY ITS OWN COMPLETENESS    (Act 4: this line)
+So the answer to 'element kind, dimension, or structural impossibility?'
+is: ALL THREE, at different heights of the same ladder —
+  as an attribute: creatable, today, additively        (this file)
+  as a dimension:  creatable as an OPEN dimension — a lazy iterator
+                   of ever-better-certified verdicts, never a completed
+                   totality (the catalog lesson, again)
+  as a CLOSED, self-certifying floor: structurally impossible — that
+                   is Tarski's rent, and the |'|| true' check already
+                   paid it once in miniature.
+
+══ Summary table — gain / loss (argued in WITNESS_LEDGER.md) ═════
+GAINED by adding the column:
+  g1 agreement audit: consensus resting on Π₁ testimony is now VISIBLE
+  g2 an upgrade market: certificates become first-class contributions
+  g3 the Δ/Π₁ line replaces my false 'every negative is testimony'
+  g4 fuel becomes data: two Π₁ verdicts with different fuel now differ
+LOST (paid) by adding it:
+  l1 verdict bivalence: 'all checks pass' splits into pass-Δ/pass-Σ₁/
+     survived-Π₁ — CI green stops meaning one thing
+  l2 finality: every Π₁ row is permanently reopenable by construction
+  l3 the classifier's own soundness joins the Π₁ rows it created
+  l4 schema cost: a column on Element, and the 13-kinds/20-relations
+     cardinality pins break AGAIN (the ratchet, as predicted)
