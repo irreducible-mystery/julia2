@@ -1,0 +1,45 @@
+
+== 1 · negation is a PROMISE about all futures ===============
+  w0 ⊩ p        : false   (not yet proven)
+  w0 ⊩ ¬p       : false   (¬p FAILS too: p becomes provable at w1)
+  → at w0, NEITHER p nor ¬p holds. Not a third value — a
+    genuine gap: assertion requires construction, and neither
+    'p' nor 'p leads to absurdity' has one yet.
+
+== 2 · excluded middle dies, constructively ==================
+  w0 ⊩ p ∨ ¬p   : false
+  valid(p ∨ ¬p) : false
+  → 'true or false' is not a law — it is a CLAIM OF OMNISCIENCE:
+    asserting p∨¬p means 'I can already tell you which.' At w0
+    you cannot. (Bivalence was Prolog's CWA in philosopher's dress.)
+
+== 3 · the double-negation gap, exactly located ==============
+  w0 ⊩ ¬¬p      : true   ('p will never be refuted' — TRUE: p gets proven at w1)
+  w0 ⊩ p        : false    (but p itself has no proof YET)
+  → ¬¬p HOLDS where p does NOT. The double-negation gap is the
+    distance between 'irrefutable' and 'proven' — between the
+    future and the present of inquiry. Prolog's \+ \+ G ≠ G was
+    this gap's operational shadow (proof-test vs proof); BQN's
+    float ¬¬x ≠ x was its carrier shadow. One gap, three costumes.
+
+== 4 · what intuitionism KEEPS: the safe direction + triple-¬ 
+  valid(p → ¬¬p)      : true   (proven ⟹ irrefutable: always)
+  valid(¬¬¬p → ¬p)    : true   (triple collapses to single)
+  → ¬¬¬p = ¬p but ¬¬p ≠ p: negation stabilizes after ONE round trip.
+    The gap exists only at the first double-negation — landing in
+    ¬-land is a one-way door (Glivenko's shadow).
+
+== 5 · the Liar under constructive negation ==================
+  liar ≡ L ↔ ¬L. Seek a fixed point among stage-truths:
+    candidate L = 'never provable' (∅)
+    candidate L = 'provable at w1' ({w1})
+    candidate L = 'provable now' ({w0,w1})
+    L=Symbol[]     ⟦L⟧=Symbol[]     ⟦¬L⟧=[:w0, :w1]    no
+    L=[:w1]        ⟦L⟧=[:w1]        ⟦¬L⟧=Symbol[]      no
+    L=[:w0, :w1]   ⟦L⟧=[:w0, :w1]   ⟦¬L⟧=Symbol[]      no
+  → no candidate matches: the Liar has no stage-truth solution
+    here either — but the DIAGNOSIS changes: not 'contradiction'
+    (classical), not 'undefined' (WFS), not '½' (BQN): the Liar
+    demands a construction that consumes itself — a proof that is
+    its own refutation — and constructively such an object simply
+    never gets built. The paradox becomes a FAILED CONSTRUCTION.

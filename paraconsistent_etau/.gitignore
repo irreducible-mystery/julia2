@@ -1,0 +1,4 @@
+# fetch_sources.sh writes here. Third-party papers and distributions are pinned by
+# identifier and sha256 in sources.json, never vendored into this repository.
+downloads/
+__pycache__/

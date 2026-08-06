@@ -45,13 +45,13 @@
       ⇒ classical logic is forced to make X true — Curry «proves» anything.
     Expression 2 (recursive)  curry() = curry() ? PIGS_FLY : true → 💥 StackOverflowError — no classical value exists; the computation diverges.
     Expression 3 (K3): isequal(C, !C | X) with C = missing → true
-  VERDICT: ANTINOMY — DOES NOT RESOLVE; worse than the Liar (needs no negation, so even some paraconsistent logics fall to it).
+  VERDICT: ANTINOMY — DOES NOT RESOLVE; worse than the Liar (needs no negation). Precisely: lethal Curry needs CONTRACTION (A→(A→B) ⊢ A→B) — K3/missing survives (Expression 3) because material «→» via !C|X is non-contractive there; substructural logics dodge Curry by dropping contraction, not negation. (Repair per instance 3's bug #5: the culprit rule now has its name.)
 
 ══════════════════════════════════════════════════════════════════════
   HALTING PROBLEM — Turing's diagonal (the Liar, made mechanical)
 ══════════════════════════════════════════════════════════════════════
-    oracle₁ ≡ «it halts»:  predicted = HALTS,  actual = RUNS_FOREVER  → ❌ REFUTED
-    oracle₂ ≡ «it loops»:  predicted = RUNS_FOREVER,  actual = HALTS  → ❌ REFUTED
+    oracle₁ ≡ «it halts»:  predicted = HALTS,  observed = STILL_RUNNING  → ❌ REFUTED
+    oracle₂ ≡ «it loops»:  predicted = RUNS_FOREVER,  observed = HALTS  → ❌ REFUTED
       Every possible oracle is refuted the same way ⇒ halts() cannot exist.
     Empirical semi-decision (Collatz):  n=27 → true,  n=2^61+1 → true   (true or missing — never a provable false)
   VERDICT: ANTINOMY (as decision problem) — DOES NOT RESOLVE. Undecidability is the Liar compiled to machine code.

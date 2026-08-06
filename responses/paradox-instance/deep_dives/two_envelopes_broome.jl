@@ -109,7 +109,10 @@ println("    Σ over observation-cells of P(A)·E[gain | A]  (partial sums):")
 for n in 0:30
     A  = 2.0^n
     PA = n == 0 ? p(0)/2 : (p(n-1) + p(n))/2         # P(observe 2^n)
-    Eg = n == 0 ? 1.0 : A/8
+    # E[gain|A] = A/10 per §1's posterior (2/5·A − 3/5·A/2). Was A/8 — convicted
+    # independently by instances 3, 4, and 6 (the field's most-verified bug);
+    # conclusion unchanged (divergence is driven by the (4/3)ⁿ term growth).
+    Eg = n == 0 ? 1.0 : A/10
     global cells += PA * Eg
     n in (0, 1, 2, 5, 10, 20, 30) &&
         @printf("      through n = %2d:  %10.5f\n", n, cells)

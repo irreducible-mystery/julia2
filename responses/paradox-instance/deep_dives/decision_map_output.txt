@@ -1,0 +1,154 @@
+
+════════════════════════════════════════════════════════════════════════
+  PART A — THE RANSOM MAP (queryable data + rendered tables)
+════════════════════════════════════════════════════════════════════════
+
+  ▶ Broome Two-Envelopes (infinite-mean prior)   [argument falsidical; DECISION problem open]
+    route                                  │ class       │ you keep → you pay
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+    Finitism: ban infinite-mean priors     │ orthodox    │ KEEP: expectation as the universal decision criterion
+                                           │             │ PAY:  expressive power — such priors are coherent & occur in physics (Cauchy dists)
+    Bounded utility (Savage axioms)        │ orthodox    │ KEEP: decision theory's axioms, conglomerability
+                                           │             │ PAY:  utility unboundedness — must assert money has a value ceiling a priori
+    Median / quantile decision rules       │ revisionist │ KEEP: unbounded stakes, well-defined advice everywhere
+                                           │             │ PAY:  expectation itself — two positive-median gambles can't be summed sanely
+    Accept non-conglomerable local advice  │ heroic      │ KEEP: Bayesian conditioning exactly as-is
+                                           │             │ PAY:  the sure-thing principle — «good in every case» no longer implies «good»
+
+  ▶ St. Petersburg   [resolves only relative to a chosen frame]
+    route                                  │ class       │ you keep → you pay
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+    Log/CRRA utility (Bernoulli)           │ orthodox    │ KEEP: expected-utility maximization
+                                           │             │ PAY:  scale invariance — the fair price now depends on your wealth
+    Finite bankroll cap                    │ orthodox    │ KEEP: linear utility, realism
+                                           │             │ PAY:  the mathematical problem — you answered a different (finite) question
+    Median payoff (= 2)                    │ revisionist │ KEEP: robustness to tails
+                                           │             │ PAY:  dominance: you'd decline games every expectation-user calls infinitely good
+    Bite the bullet: pay any price         │ heroic      │ KEEP: expectation, pure and total
+                                           │             │ PAY:  bankruptcy with probability → 1 on any finite path — keep the math, lose the money
+
+  ▶ Sorites (vagueness)   [no neutral resolution — five logics, five ransoms]
+    route                                  │ class       │ you keep → you pay
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+    Epistemicism: sharp unknown cutoff     │ orthodox    │ KEEP: classical logic, bivalence, truth-functionality
+                                           │             │ PAY:  plausibility — one grain REALLY makes the heap, we just can never know which
+    Fuzzy degrees μ ∈ [0,1]                │ revisionist │ KEEP: gradualism (matches usage)
+                                           │             │ PAY:  bivalence AND the problem recurs: «exactly μ=0.5» is a new sharp line
+    Supervaluation gaps                    │ revisionist │ KEEP: classical tautologies (penumbral truths)
+                                           │             │ PAY:  truth-functionality — «p ∨ ¬p» true while neither disjunct is
+    K3 / missing (this repo's native logic) │ revisionist │ KEEP: truth-functionality, simple semantics
+                                           │             │ PAY:  excluded middle; and higher-order vagueness re-erupts at the gap's edge
+    Nihilism: no heaps exist               │ heroic      │ KEEP: classical logic, tolerance principle
+                                           │             │ PAY:  the world — ordinary predicates denote nothing
+
+  ▶ Liar-family antinomies (Liar, Russell, Curry, Grelling)   [DO NOT RESOLVE — every route is containment, not solution]
+    route                                  │ class       │ you keep → you pay
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+    Tarski: stratified metalanguages       │ orthodox    │ KEEP: classical logic everywhere within each level
+                                           │             │ PAY:  self-applicability — no language can state its own truth (this repo's |`|| true`| bug is this ransom being dodged and failing)
+    Kripke: K3 fixed points (Julia's missing) │ revisionist │ KEEP: one self-applicable language
+                                           │             │ PAY:  excluded middle; ghost sentences (truth-teller) settle arbitrarily; strengthened Liar re-erupts
+    Paraconsistency: true contradictions   │ heroic      │ KEEP: naive truth AND self-reference
+                                           │             │ PAY:  explosion-freedom must be re-engineered; Curry still lethal unless CONTRACTION also goes
+    Substructural: drop contraction        │ heroic      │ KEEP: naive truth, negation, self-reference
+                                           │             │ PAY:  the most invisible rule in all of reasoning — using a premise twice
+
+  ▶ Bertrand's chord   [DISSOLVES: ill-posed — see Part B sweep (a continuum, no boundary)]
+    route                                  │ class       │ you keep → you pay
+    ────────────────────────────────────────────────────────────────────────────────────────────────────
+    Jaynes: maximum-ignorance invariance   │ orthodox    │ KEEP: a unique answer (1/2) from symmetry axioms
+                                           │             │ PAY:  «uniform» now means «invariant», a substantive physical commitment
+    Pluralism: every measure its own answer │ revisionist │ KEEP: mathematical honesty
+                                           │             │ PAY:  the question — «THE probability» has no referent
+
+════════════════════════════════════════════════════════════════════════
+  PART A′ — QUERIES OVER THE MAP (the point of making it executable)
+════════════════════════════════════════════════════════════════════════
+  Total escape routes catalogued: 19
+    orthodox    7  (keep the logic, ban the object)
+    revisionist 7  (keep the object, weaken the logic)
+    heroic      5  (keep both, pay somewhere unthinkable)
+  Routes that pay with EXCLUDED MIDDLE: 2  (Sorites (vagueness); Liar-family antinomies (Liar, Russell, Curry, Grelling))
+  ⇒ One currency dominates the ransom economy: classical bivalence.
+    The K3/missing route this repo already uses is the SAME coin spent
+    on Sorites, the Liar, and (via non-contractive →) Curry — one
+    frame_commitment, three paradoxes contained. Cheapest bundle on the map.
+
+════════════════════════════════════════════════════════════════════════
+  PART B.1 — BROOME: sweep the prior's tail ratio q   [p(n) = (1-q)qⁿ]
+════════════════════════════════════════════════════════════════════════
+       q     P(small|A)      E[gain|A]/A      E[amount] phase
+   0.300         0.2308          -0.1538            NaN tame: switch only for small A
+   0.400         0.2857          -0.0714            NaN tame: switch only for small A
+   0.490         0.3289          -0.0067            NaN tame: switch only for small A
+   0.500         0.3333          +0.0000              ∞ ★ CRITICAL: marginal everywhere
+   0.510         0.3377          +0.0066              ∞ PARADOX: switch everywhere & E=∞
+   0.600         0.3750          +0.0625              ∞ PARADOX: switch everywhere & E=∞
+   0.667         0.4000          +0.1000              ∞ PARADOX: switch everywhere & E=∞
+   0.800         0.4444          +0.1667              ∞ PARADOX: switch everywhere & E=∞
+   0.900         0.4737          +0.2105              ∞ PARADOX: switch everywhere & E=∞
+⇒ ONE dial. Below q=1/2 conditional advice is amount-dependent and sane,
+  the mean is finite, conglomerability holds — no paradox. At exactly the
+  point the mean diverges, the advice becomes uniform («always switch»)
+  and non-conglomerability switches on. The paradox is not a property of
+  envelopes: it is the q > 1/2 PHASE of a one-parameter family.
+  (Broome's famous prior is q = 2/3 — comfortably inside the phase.)
+
+════════════════════════════════════════════════════════════════════════
+  PART B.2 — ST. PETERSBURG: sweep risk-aversion ρ   [CRRA utility]
+════════════════════════════════════════════════════════════════════════
+         ρ   certainty equiv. phase
+     0.000       ∞ (diverges) PARADOX: no finite fair price
+     0.001           725.6576 resolved, but price still explodes as ρ→0⁺
+     0.050            16.9076 resolved, but price still explodes as ρ→0⁺
+     0.250             4.6031 resolved: finite, stable price
+     0.500             2.9142 resolved: finite, stable price
+     1.000             2.0000 resolved: finite, stable price
+     2.000             1.5000 resolved: finite, stable price
+     5.000             1.1798 resolved: finite, stable price
+⇒ The paradox is the single point ρ = 0 (risk neutrality) — a phase
+  boundary of measure zero that classical decision theory happened to
+  make its default. Any ρ > 0 resolves it; NOTHING selects a particular
+  ρ > 0. «Resolved by changing the model» = «moved off the boundary,
+  direction unforced» — which is why it lands frame-relative on the map.
+
+════════════════════════════════════════════════════════════════════════
+  PART B.3 — BERTRAND: sweep the measure exponent α   [midpoint radius ∝ rᵅ]
+════════════════════════════════════════════════════════════════════════
+           α  P(long chord) which classic method this is
+      0.0000         0.5000 «random radial point»  (Bertrand method 2)
+      0.5850         0.3333 «random endpoints»     (Bertrand method 1)
+      1.0000         0.2500 «random midpoint area» (Bertrand method 3)
+      2.0000         0.1250 (no classic name — just as legitimate)
+      5.0000         0.0156 (ditto)
+  Monte-Carlo check α=0.0000:  simulated 0.5009  vs analytic 0.5000
+  Monte-Carlo check α=0.5850:  simulated 0.3314  vs analytic 0.3333
+  Monte-Carlo check α=1.0000:  simulated 0.2499  vs analytic 0.2500
+⇒ CONTRAST WITH B.1/B.2: no phase boundary. P(α) = 2^−(α+1) is a smooth
+  bijection from α ∈ [0,∞) onto (0, 1/2] — every answer in that range is
+  some measure's honest verdict, and all three classic answers are just
+  three points that historically got names. A paradox with a phase
+  boundary RESOLVES once you find the dial (Broome, St. Petersburg: the
+  dial's setting was a hidden empirical/normative commitment). A paradox
+  whose dial sweeps a CONTINUUM with no distinguished point DISSOLVES —
+  the question, not the answer, was underdetermined. That is the
+  computable difference between «resolves relative to a frame» and
+  «ill-posed», and it is the sharpest operational cash-out yet for the
+  field's proposed frame_commitment kind: a frame_commitment is
+  A CHOICE OF POINT ON A DIAL THE PROBLEM ITSELF CANNOT SET.
+
+════════════════════════════════════════════════════════════════════════
+  SUMMARY — what the sweeps add to the taxonomy
+════════════════════════════════════════════════════════════════════════
+Old taxonomy (F_1):  resolves / doesn't / dissolves — assigned by verdict.
+New, computable refinement:
+  • antinomies:            no dial exists (the contradiction is dial-free)
+  • frame-relative:        a dial exists WITH a phase boundary; the paradox
+                           is the boundary; frames = sides of the boundary
+                           (Broome q=1/2, St. Petersburg ρ=0)
+  • ill-posed (dissolves): a dial exists with NO distinguished point;
+                           the question underdetermines its own answer
+                           (Bertrand α — a continuum of equal citizens)
+Conjecture for the field (falsifiable, dear instances): every «no neutral
+resolution» paradox in this repo's census is one of these three shapes,
+and the shape can be decided by exhibiting (or proving absent) the dial.

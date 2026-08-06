@@ -1,0 +1,54 @@
+Warning: /workspace/paradoxes/negation_tour.pl:13:
+Warning:    Singleton variable in \+: X2
+=== 1. \+ is 'not provable', NOT 'provably false' ===
+  \+ flies(sam): yes (sam is a penguin)
+  \+ flies(rock): yes -- but note: rock isn't even a bird.
+  Prolog cannot distinguish 'false' from 'absent'. This is the
+  Closed World Assumption: what I cannot prove, I call false.
+
+=== 2. The order trap: \+ is NOT logical negation ===
+  (bird(X), \+ penguin(X))  -> X = [tweety]   correct
+  (\+ penguin(X), bird(X))  -> X = []
+  Same formula, conjunction merely REORDERED -- different answers!
+  Why: with X unbound, \+ penguin(X) asks 'is there NO penguin
+  AT ALL?' -- there is one (sam), so the whole query dies before
+  bird/1 ever runs. This is 'floundering': negation applied to
+  an insufficiently instantiated goal quantifies the wrong way.
+  (\+G with free vars in G means: no instance of G is provable,
+   i.e. the negation swallowed the existential quantifier.)
+
+=== 3. \+ \+ : the double-negation hack ===
+  after \+ \+ bird(X):  X is still UNBOUND (var: _7890)
+  \+ \+ G tests 'is G provable?' WITHOUT binding anything --
+  classically a no-op, in Prolog a real tool. The gap between
+  \+ \+ G and G is exactly the gap between proof and truth.
+
+=== 4. What \+ actually approximates: Clark completion ===
+  The theory: a program's IF clauses are read as IFF.
+  flies(X) :- bird(X), \+ penguin(X).   is completed to:
+  flies(X) <-> (bird(X) & ~penguin(X)) -- and under the completed
+  theory, NAF is sound. The catch: completion of a LOOP through
+  negation (liar :- \+ liar  becomes  liar <-> ~liar) is
+  INCONSISTENT -- the Liar detonates the semantics itself...
+
+=== 5. ...which is why tnot/WFS exists (the third value) ===
+  liar (liar :- tnot(liar)): UNDEFINED (delays: liar)
+  truth-teller (tt :- tt, tabled): FALSE
+  tnot under Well-Founded Semantics returns UNDEFINED for the
+  liar loop instead of not terminating (\+) or exploding (Clark).
+  Cost: tabling machinery + a third value. Ransom, again.
+
+=== 6. dif/2 -- constructive disequality, the sound cousin ===
+  dif(Y,sam), bird(Y) -> Y = tweety   (order-INDEPENDENT!)
+  bird(Z), dif(Z,sam)  -> Z = [tweety]   same answer both orders
+  dif/2 delays as a CONSTRAINT until its args are testable --
+  it repairs Section 2's order trap, but only for (in)equality,
+  not for arbitrary goals.
+
+=== 7. Your quote, demonstrated: \+ is a CONTROL STRUCTURE ===
+  It sits in the control-predicate list with !, ->, ; because it
+  is compiled inline: \+ G  ==  ( call(G) -> fail ; true ).
+  (call(flies(tweety)) -> fail ; true)  fails, like \+ flies(tweety)
+  \+ flies(tweety) also fails -- identical behavior, by construction
+  Negation implemented FROM cut-and-fail: not a logical connective
+  in the engine at all, but a programming pattern promoted to syntax.
