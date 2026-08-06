@@ -15,6 +15,19 @@
  output is captured and discarded), then every claim the demo prints
  informally is re-derived here as an explicit @test against the functions
  the Part defines.
+
+ DO NOT CITE LINE COVERAGE AS EVIDENCE FOR THIS SUITE. Measured, not assumed:
+
+     full suite (240 assertions)          568/568 executable lines   100.0%
+     control: the four include()s only,     499/504 executable lines    99.0%
+              ZERO assertions
+
+ Because each Part's demo executes on include(), ~99% of src/ is already
+ "covered" by a file that asserts nothing at all. Coverage here measures that
+ the demos ran, not that anything was checked — a marker standing in for the
+ property it appears to report. The assertion count and the discrimination
+ tests below (a broken constant, a deleted relation, a rename holding the
+ count) are the load-bearing evidence; coverage is not.
 =============================================================================#
 
 using Test
