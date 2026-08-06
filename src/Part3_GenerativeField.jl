@@ -262,6 +262,7 @@ const RELATION_TYPES = [
     :applies_at_different_scale, :applies_at_different_time, :transforms_into,
     :provides_counterexample_to, :shares_assumption_with, :requires_dimension,
     :unresolved_with,
+    :incommensurable_priors,   # F_2→F_3: added per issue #1 / PR #3 Q1 adjudication
 ]
 
 # -- An attributed element (the contribution record, YAML → struct) -----------
@@ -295,16 +296,114 @@ contradicts_under(src, tgt; same_referent, same_definition, same_scale,
 
 # -- Tension classification (the tension-typer operator) ----------------------
 
-@enum TensionKind logical_contradiction equivocation scale_mismatch temporal_mismatch framework_mismatch measurement_disagreement false_dichotomy self_reference undecidability uncomputability value_conflict
+@enum TensionKind logical_contradiction equivocation scale_mismatch temporal_mismatch framework_mismatch measurement_disagreement false_dichotomy self_reference undecidability uncomputability value_conflict incommensurability
 
 "Decompression: does the conflict survive restoring time/scale/context/framework?"
 function classify_tension(rel)::TensionKind
+    # F_2→F_3: the new relation carries no `conditions` — its failure is not a
+    # clash under shared conditions but a failure of joint evaluability.
+    haskey(rel, :type) && rel.type == :incommensurable_priors && return incommensurability
     c = rel.conditions
     !c.same_definition  && return equivocation           # early-return guard form
     !c.same_scale       && return scale_mismatch
     !c.overlapping_time && return temporal_mismatch
     c.shared_logic != :classical && return framework_mismatch
     logical_contradiction                                # only if all context matches
+end
+
+# ══════════════════════════════════════════════════════════════════════════════
+# F_2 → F_3 candidate: the :incommensurable_priors relation
+#
+# Origin trace: drafted by instance 1; adjudicated in the PR #3 review (Q1) after
+# instance 2's Broome deep-dive (responses/paradox-instance/deep_dives/) showed a
+# failure mode no existing relation type can carry:
+#
+#   contradicts_under(e1, e2, conditions) PRESUMES both elements evaluate under
+#   the shared conditions and clash. Broome's two partitions (by-amount vs
+#   by-pair) each individually pass every coherence check, yet the aggregate on
+#   which they disagree — E[gain] — does not exist as a real number (an ∞ − ∞
+#   ledger whose value is summation-order-dependent; Riemann rearrangement).
+#   The disagreement is not a clash of values but a failure of EVALUABILITY.
+#
+# So the new relation carries a precondition no entry in the 20-type vocabulary
+# had: before comparing two projections' induced aggregates, ask whether each
+# aggregate EXISTS observer-independently. Three outcomes:
+#
+#   species :divergent_aggregate — at least one aggregate fails evaluability
+#                                  (type specimen: Broome two-envelopes)
+#   species :no_shared_measure   — both evaluable, but no common reference
+#                                  measure selects between them
+#                                  (second instance: Bertrand's chord)
+#   REDUCTION                    — both evaluable under a shared measure:
+#                                  disagreement is ordinary contradicts_under
+#                                  (measurement_disagreement); agreement is
+#                                  commensurability. NOT this relation.
+# ══════════════════════════════════════════════════════════════════════════════
+
+"""
+A projection functional: one way of partitioning the microstate space, with,
+per cell n = 0,1,2,…, the cell's probability weight and the conditional value
+of the quantity of interest. `ncells === nothing` means countably infinite.
+"""
+struct ProjectionFunctional
+    id::String
+    terms::Function                       # n -> (weight, conditional_value)
+    ncells::Union{Int,Nothing}
+end
+
+"""
+Evaluability precondition: does Σₙ wₙ·vₙ exist observer-independently?
+An aggregate exists iff the series converges ABSOLUTELY — conditional
+convergence is not enough, because a conditionally convergent ledger has no
+rearrangement-invariant total (Riemann). Numerically: the absolute-value
+partial sums must go Cauchy within `tol` before the horizon `N`.
+Returns (evaluable::Bool, value::Union{Float64,Nothing}).
+"""
+function evaluate_aggregate(pf::ProjectionFunctional; N::Int = 400, tol::Real = 1e-10)
+    hi = pf.ncells === nothing ? N : min(N, pf.ncells) - 1
+    s_abs, s_val, tail = 0.0, 0.0, Inf
+    for n in 0:hi
+        w, v = pf.terms(n)
+        s_abs += abs(w * v)
+        s_val += w * v
+        tail = abs(w * v)
+    end
+    finite_and_settled = pf.ncells !== nothing && pf.ncells - 1 <= hi
+    converged = finite_and_settled || tail < tol * max(s_abs, 1.0)
+    converged ? (true, s_val) : (false, nothing)
+end
+
+"""
+The relation constructor. Compares two projections of the SAME microstate
+space and returns either the first-class :incommensurable_priors relation
+(with its species and the evaluability record), or an explicit REDUCTION
+verdict showing why the case does NOT need the new relation.
+"""
+function incommensurable_priors(pf1::ProjectionFunctional, pf2::ProjectionFunctional;
+                                shared_measure::Bool, tol::Real = 1e-6,
+                                unresolved::Vector{String} = String[])
+    e1, s1 = evaluate_aggregate(pf1)
+    e2, s2 = evaluate_aggregate(pf2)
+    record = (pf1 = (id = pf1.id, evaluable = e1, aggregate = s1),
+              pf2 = (id = pf2.id, evaluable = e2, aggregate = s2))
+    if !(e1 && e2)
+        return (type = :incommensurable_priors, species = :divergent_aggregate,
+                source = pf1.id, target = pf2.id, evaluability = record,
+                reducible_to_contradicts_under = false,
+                unresolved_questions = unresolved)
+    end
+    if !shared_measure && abs(s1 - s2) > tol
+        return (type = :incommensurable_priors, species = :no_shared_measure,
+                source = pf1.id, target = pf2.id, evaluability = record,
+                reducible_to_contradicts_under = false,
+                unresolved_questions = unresolved)
+    end
+    # Both evaluable — the new relation must NOT be used. Reduce.
+    verdict = abs(s1 - s2) <= tol ? :commensurable : :reduces_to_contradicts_under
+    return (type = :reduction, species = verdict,
+            source = pf1.id, target = pf2.id, evaluability = record,
+            reducible_to_contradicts_under = verdict == :reduces_to_contradicts_under,
+            unresolved_questions = unresolved)
 end
 
 # -- The family of bounded transformation operators ---------------------------
@@ -571,6 +670,51 @@ function demo()
     foreach(k -> println("  ", k, ": ", LEVELS[k]), sort(collect(keys(LEVELS))))
     println("L3 dimension proposal (:reversibility): ",
             accept_dimension_proposal!(vf, :reversibility; accept = _ -> true))
+
+    # -- F_2→F_3: incommensurable_priors on its three specimens ---------------
+    println("\n:incommensurable_priors (F_2→F_3 candidate):")
+
+    # Type specimen — Broome two-envelopes (deep_dives/two_envelopes_broome.jl):
+    # by-observation cells: P(A=2^n)·E[gain|A] grows without bound (terms ∝ (4/3)^n);
+    # by-pair cells: p(n)·0 identically (exchangeable within each pair).
+    p(n) = (1/3) * (2/3)^n
+    by_amount = ProjectionFunctional("broome-by-amount",
+        n -> n == 0 ? (p(0)/2, 1.0) : ((p(n-1) + p(n))/2, 2.0^n / 8), nothing)
+    by_pair   = ProjectionFunctional("broome-by-pair", n -> (p(n), 0.0), nothing)
+    r_broome = incommensurable_priors(by_amount, by_pair; shared_measure = true)
+    println("  Broome:   ", r_broome.type, " / ", r_broome.species,
+            "  (by-amount evaluable=", r_broome.evaluability.pf1.evaluable,
+            ", by-pair evaluable=", r_broome.evaluability.pf2.evaluable, ")",
+            "  → tension: ", classify_tension(r_broome))
+
+    # Second instance — Bertrand's chord (paradoxes/03_probability.jl):
+    # three uniformities, each a perfectly evaluable P(chord > side), no shared
+    # measure to select among 1/3, 1/2, 1/4.
+    bert_endpoints = ProjectionFunctional("bertrand-endpoints", _ -> (1.0, 1/3), 1)
+    bert_radial    = ProjectionFunctional("bertrand-radial",    _ -> (1.0, 1/2), 1)
+    r_bert = incommensurable_priors(bert_endpoints, bert_radial; shared_measure = false)
+    println("  Bertrand: ", r_bert.type, " / ", r_bert.species,
+            "  (both evaluable, aggregates ",
+            r_bert.evaluability.pf1.aggregate, " vs ",
+            r_bert.evaluability.pf2.aggregate, ")",
+            "  → tension: ", classify_tension(r_bert))
+
+    # Negative control — two geometric-decay charts of one finite-mean system:
+    # both evaluable under the shared measure, totals agree → NOT this relation.
+    geo1 = ProjectionFunctional("finite-mean-chart-1", n -> (0.5^(n+1), 1.0), nothing)
+    geo2 = ProjectionFunctional("finite-mean-chart-2", n -> (0.25 * 0.75^n, 1.0), nothing)
+    r_ctrl = incommensurable_priors(geo1, geo2; shared_measure = true, tol = 1e-6)
+    println("  control:  ", r_ctrl.type, " / ", r_ctrl.species,
+            "  (Σ₁=", round(r_ctrl.evaluability.pf1.aggregate; digits = 8),
+            ", Σ₂=", round(r_ctrl.evaluability.pf2.aggregate; digits = 8),
+            ") — correctly NOT flagged")
+
+    @assert r_broome.type == :incommensurable_priors && r_broome.species == :divergent_aggregate
+    @assert r_bert.type == :incommensurable_priors && r_bert.species == :no_shared_measure
+    @assert r_ctrl.type == :reduction && !r_ctrl.reducible_to_contradicts_under
+    @assert :incommensurable_priors in RELATION_TYPES
+    println("  all three verdicts verified ✓  (relation count now ",
+            length(RELATION_TYPES), ")")
 
     println("\nFirst meaningful cycle complete:")
     println("  expression → reflection → correction → second perspective →")
