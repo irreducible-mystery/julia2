@@ -1,0 +1,51 @@
+=== 1. ¬ is literally 1-x: total on ALL numbers ===
+  ¬0, ¬1:        ⟨ 1 0 ⟩
+  ¬0.3:          0.7
+  ¬2:            ¯1
+  ¬¯5:           6
+  Prolog's \\+ is partial (flounders); ¬ is total. No 'cannot be
+  proven' exists here -- every input HAS a negation. The Closed
+  World seam is gone... because there is no world, only numbers.
+
+=== 2. The involution seam: when is ¬¬x = x? ===
+  ¬¬0.3 = 0.30000000000000004
+  ¬¬¯7  = ¯7
+  CONFESSION (kept, per protocol): this file's first draft said
+  'ALWAYS -- 1-(1-x)=x is algebra.' The machine refused: ¬¬0.3
+  printed 0.30000000000000004. The involution holds in R and
+  FAILS in float64 -- my claim was about the abstraction, the
+  run was about the carrier. So BQN's double-negation law is
+  EXACT on integers-in-float and dyadic rationals, approximate
+  elsewhere: even the classical law you buy is horizon-graded.
+  (Prolog's \\+ \\+ G =/= G is a PROOF gap; intuitionism's ~~G
+  =/= G is a CONSTRUCTION gap; float ¬¬x =/= x is a CARRIER gap.)
+
+=== 3. De Morgan seam: ∧∨ are ×(+-×) -- laws hold only on 0‿1 ===
+  on Booleans: ¬(a∧b) ≡ (¬a)∨(¬b)?  1
+  off-domain:  a=2, b=0.5:
+    ¬2∧0.5     = 0
+    (¬2)∨(¬0.5) = 0
+  De Morgan BREAKS off 0‿1: ∧ is ×, ∨ is +-×, and the identities
+  1-ab = (1-a)+(1-b)-(1-a)(1-b) hold iff a,b∈0‿1 (or fuzzy [0,1]:
+  there they're Łukasiewicz-ish but ∧ is product t-norm, not min).
+  The seam: BQN exports 'not' beyond logic, and the LAWS quietly
+  become CONTINGENT identities true on a subdomain.
+
+=== 4. The fixed-point seam (the Liar's home) ===
+  ¬0.5 = 0.5
+  Prolog: liar detonates Clark completion / goes UNDEFINED in WFS.
+  BQN: x=¬x is an EQUATION, solution ½. The liar seam is not
+  avoided -- it is RELOCATED into the codomain. Cost: ½ is not a
+  truth value anyone asserted; it is where the algebra says the
+  oscillation balances. Meaning was traded for solvability.
+
+=== 5. The comparison seam: ¬ vs ≠ vs 'not equal to anything' ===
+  (0.1+0.2)≠0.3?  1
+  (and a meta-seam caught live: my first draft wrote 0.1+0.2≠0.3
+   unparenthesized -- BQN's right-to-left parse made it 0.1+(0.2≠0.3)
+   = 1.1. The NOTATION has seams too.)
+  Absence-of-equality is IEEE ≠, a DIFFERENT negation than ¬, with
+  its own seams (float dirt). BQN has two nots that never meet:
+  arithmetic ¬ (total, classical) and comparison ≠ (bitwise on
+  representations). Prolog also had two (\\+ vs dif/2). Pattern:
+  EVERY language that splits negation splits it along proof/value.
