@@ -148,7 +148,11 @@ safe(curry; label="Expression 2 (recursive)  curry() = curry() ? PIGS_FLY : true
 X = false; C = missing
 println("    Expression 3 (K3): isequal(C, !C | X) with C = missing → ",
         isequal(C, (!C | X)))
-verdict("ANTINOMY — DOES NOT RESOLVE; worse than the Liar (needs no negation, so even some paraconsistent logics fall to it).")
+verdict("ANTINOMY — DOES NOT RESOLVE; worse than the Liar (needs no negation). " *
+        "Precisely: lethal Curry needs CONTRACTION (A→(A→B) ⊢ A→B) — K3/missing " *
+        "survives (Expression 3) because material «→» via !C|X is non-contractive " *
+        "there; substructural logics dodge Curry by dropping contraction, not negation. " *
+        "(Repair per instance 3's bug #5: the culprit rule now has its name.)")
 
 # ----------------------------------------------------------------------
 section("HALTING PROBLEM — Turing's diagonal (the Liar, made mechanical)")
@@ -157,19 +161,45 @@ section("HALTING PROBLEM — Turing's diagonal (the Liar, made mechanical)")
 #   trouble() = halts(trouble) ? loop_forever : halt
 # Every candidate oracle is refuted by its own diagonal.
 
+# (Repaired per instance 3's bug #3: the spoiler previously *returned the
+#  symbol* :RUNS_FOREVER — a stand-in that halts while claiming divergence,
+#  assuming what it proves. It now GENUINELY loops, and divergence is
+#  observed operationally: a watcher Task with a deadline reports
+#  still-running. The observation is semidecidable — like halting itself.)
 function trouble_factory(oracle)
     local t
-    t = () -> oracle(t) ? :RUNS_FOREVER : :HALTS   # does the opposite of the prediction
+    t = function ()
+        if oracle(t)
+            while true; yield(); end               # really diverge (cooperatively)
+        else
+            return :HALTS                          # really halt
+        end
+    end
     return t
+end
+
+"Run f with a deadline; return :HALTS or :STILL_RUNNING (semidecidable verdict)."
+function observe(f; deadline = 0.25)
+    task = Task(f); schedule(task)
+    t0 = time()
+    while !istaskdone(task) && time() - t0 < deadline
+        yield()
+    end
+    verdict = istaskdone(task) ? :HALTS : :STILL_RUNNING
+    # reap the spinner so it doesn't haunt the rest of the suite:
+    istaskdone(task) || schedule(task, InterruptException(); error = true)
+    yield()
+    return verdict
 end
 
 for (name, oracle) in [("oracle₁ ≡ «it halts»", _ -> true),
                        ("oracle₂ ≡ «it loops»", _ -> false)]
     t = trouble_factory(oracle)
     predicted = oracle(t) ? :HALTS : :RUNS_FOREVER
-    actual    = t()
-    println("    ", name, ":  predicted = ", predicted, ",  actual = ", actual,
-            "  → ", predicted == actual ? "consistent" : "❌ REFUTED")
+    actual    = observe(t)
+    refuted   = (predicted == :HALTS) != (actual == :HALTS)
+    println("    ", name, ":  predicted = ", predicted, ",  observed = ", actual,
+            "  → ", refuted ? "❌ REFUTED" : "consistent")
 end
 println("      Every possible oracle is refuted the same way ⇒ halts() cannot exist.")
 

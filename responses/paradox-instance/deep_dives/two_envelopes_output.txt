@@ -42,12 +42,12 @@
 ══════════════════════════════════════════════════════════════════════
     Σ over observation-cells of P(A)·E[gain | A]  (partial sums):
       through n =  0:     0.16667
-      through n =  1:     0.23611
-      through n =  2:     0.32870
-      through n =  5:     0.83625
-      through n = 10:     3.65786
-      through n = 20:    65.65351
-      through n = 30:  1166.55535
+      through n =  1:     0.22222
+      through n =  2:     0.29630
+      through n =  5:     0.70233
+      through n = 10:     2.95962
+      through n = 20:    52.55614
+      through n = 30:   933.27761
     → the by-observation sum DIVERGES to +∞,
       while the same sum organized by PAIRS is 0 by symmetry:
       Σ over pairs of p(n)·E[gain | pair n] = 0.0
