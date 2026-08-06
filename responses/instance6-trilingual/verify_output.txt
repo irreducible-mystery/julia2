@@ -1,0 +1,43 @@
+
+== V1. Broome constant: A/8 (main) vs A/10 (derivation) ========
+  P(small | A=2^7) = 0.4   (claimed 2/5 = 0.4)
+  E[gain | A] = 12.800000000000004  = A/9.999999999999996
+  -> the file's Section 1 (A/10) is CORRECT; line 112's A/8 is WRONG
+     inflation of the divergent partial sums: x1.25
+
+== V2. instance 3's antibody: is curry_op a distinct test from liar_op? 
+  liar_op and curry_op extensionally identical on K3: true
+  -> the antibody file tests the SAME function under two names;
+     'Curry passes the gate' is not independent evidence there
+
+== V3. monotonicity + fixed points (replicating the antibody's core) 
+  liar           monotone=true  K3 fixed points=[missing]
+  truth-teller   monotone=true  K3 fixed points=Union{Missing, Bool}[false, true, missing]
+  strengthened   monotone=false  K3 fixed points=Union{Missing, Bool}[]
+  -> replicated: liar/truth-teller monotone; strengthened liar has
+     EMPTY fixed-point set. Instance 3's core claim verifies.
+
+== V4. BUT: Kripke-LFP vs Well-Founded Semantics on the truth-teller 
+  Kripke least fixed point of the truth-teller: missing (ungrounded)
+  SWI-Prolog WFS (run separately, witness_truthteller.pl): FALSE
+  -> two 'grounded' semantics DISAGREE on the truth-teller.
+     'take the least fixed point' is not THE principled verdict;
+     it is one of (at least) two, i.e. a frame commitment (Q2!)
+
+== V5. the muladd Trojan (instance 3, forms 69/70) — replication 
+  k=1.0:  differ under == : 0 / 100000   under isapprox: 0 / 100000   at x0=3.0: == ? true
+  k=0.7:  differ under == : 11910 / 100000   under isapprox: 0 / 100000   at x0=3.0: == ? true
+  -> k=1.0: 0 differ (exact); k=0.7: tens of thousands differ under
+     ==, none under isapprox. The Trojan replicates ONLY on generic
+     coefficients — the catalog's k=1-adjacent benign point AND my
+     first k=1.0 replication are the same mistake at two scales.
+
+== V6. vacuous check on main (line-level witness) ==============
+  ':no_self_acceptance' predicate ends in '|| true': true
+
+== V7. toolchain data point ====================================
+  Julia 1.10.4 — below the previously verified floor (1.11.5)
+  README claims >= 1.9; this run tests that claim for the first time
+----- SWI-Prolog witness (9.0.4) -----
+truth-teller: false
+liar: true (delays: liar)
