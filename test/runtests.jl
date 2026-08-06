@@ -517,14 +517,27 @@ end
     res_declined = P3.propose!(vf, [e1]; accept = _ -> false)
     @test res_declined.failures == [:acceptance_declined]
     @test length(vf.history) == 2                       # declined ⇒ no new state
-    # NOTE: the fourth CHECK, :no_self_acceptance, ends in `|| true` and is
-    # therefore structurally vacuous — it can never fail. Documented here:
+    # The fourth CHECK, :no_self_acceptance, ends in `|| true` (Part 3 line ~489)
+    # and is therefore structurally vacuous — it can never fail.
+    #
+    # `selfy` below is exactly the element that check exists to reject: confirmed
+    # by its own operator, transformed, attributed. The intended verdict is
+    # [:no_self_acceptance]; the actual verdict is Symbol[].
+    #
+    # This is asserted with @test_broken, NOT with `@test validate(selfy) == Symbol[]`.
+    # The difference is load-bearing. Pinning the *actual* verdict would make this
+    # suite go red the moment somebody repairs the check — the suite would protect
+    # the defect it documents, and a comment saying "this is vacuous" would sit one
+    # line above an assertion requiring it to stay vacuous. @test_broken states the
+    # INTENDED relation instead: it records Broken while the bug is live, and turns
+    # the suite red with "Unexpectedly Pass" the moment the `|| true` comes out —
+    # at which point promote it to @test. Repair is signalled, never punished.
     selfy = P3.Element(id = "self-1", kind = P3.claim, origin_class = :transformed,
                        operator = P3.signature(P3.Reflector()),
                        origin_trace = (origin_kind = :transformation,
                                        origin_ref = "op", captured_at = "2026-08-04"),
                        origin_confirmed = true)
-    @test P3.validate(selfy) == Symbol[]
+    @test_broken P3.validate(selfy) == [:no_self_acceptance]
 
     # the Reflector: transformed, attributed, awaiting confirmation, trace intact
     r = P3.apply(P3.Reflector(), e1)
