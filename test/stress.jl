@@ -10,7 +10,7 @@
  tree, apply that pin's mutation to the copy, and run the suite against it.
  The real tree must exit 0; the mutated tree must fail AT THE PIN'S OWN LINE.
 
- Four ways to fail, and all four are the point:
+ Five ways to fail, and all five are the point:
 
    1. A mutation the suite does not catch     -> that pin is decorative.
    2. The tree goes red at some OTHER line    -> WRONG REASON: the pin was
@@ -21,6 +21,10 @@
                                               -> UNREGISTERED PIN, red. This
       one is derived from runtests.jl rather than from my list, so forgetting
       to update the list is itself caught.
+   5. A mutation whose anchor no longer resolves to exactly one line
+                                              -> STALE / AMBIGUOUS ANCHOR, red.
+      A mutation pointing at nothing, or at two things, cannot establish which
+      assertion it exercised, so it is not allowed to report success.
 
  (2) is here because the first version of this file did not check it, and two
  of its ten "ok" results were reached without the pin ever running — red for
