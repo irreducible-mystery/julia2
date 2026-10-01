@@ -1,0 +1,9 @@
+# GHC build products — regenerate via ./run_all.sh
+Law
+Paradox
+Aggregate
+*.hi
+*.o
+*.hp
+*.prof
+*.eventlog

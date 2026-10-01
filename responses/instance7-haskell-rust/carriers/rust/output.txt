@@ -1,0 +1,134 @@
+rustc version: rustc 1.97.1 (8bab26f4f 2026-07-14)
+cargo version: cargo 1.97.1 (c980f4866 2026-06-30)
+date_utc: 2026-08-04T17:26:37Z
+host: Linux runnervmvrwv9 6.17.0-1020-azure #20~24.04.1-Ubuntu SMP Fri Jun 19 20:09:14 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+rustc version: rustc 1.97.1 (8bab26f4f 2026-07-14)
+cargo version: cargo 1.97.1 (c980f4866 2026-06-30)
+
+══════════════════════════════════════════════════════════════
+  Building instance7_carriers (law / paradox / aggregate)
+══════════════════════════════════════════════════════════════
+    Finished `release` profile [optimized] target(s) in 0.01s
+
+══════════════════════════════════════════════════════════════
+  Running law
+══════════════════════════════════════════════════════════════
+── Rust carrier: dx/dt = -k(x - x*)  (Part 4 re-carrying) ──
+  test point x0 = 3  target F(x0) = -4
+
+  ✓  01 free function                         = -4
+  ✓  02 block locals                          = -4
+  ✓  03 closure                               = -4
+  ✓  04 explicit composition                  = -4
+  ✓  05 iterator fold ops                     = -4
+  ✓  06 Regime match dispatch                 = -4
+  ✓  07 trait Regulate                        = -4
+  ✓  08 newtype inherent method               = -4
+  ✓  09 Option map                            = -4
+  ✓  10 Result match                          = -4
+  ✓  11 iterator map/next                     = -4
+  ✓  12 recursion wrapper                     = -4
+  ✓  13 1x1 array multiply                    = -4
+  ✓  14 tuple destructuring                   = -4
+  ✓  15 slice dict-of-functions               = -4
+  ✓  16 if-expression value                   = -4
+  ✓  17 loop break-value                      = -4
+  ✓  18 const-generic tag                     = -4
+  ✓  19 higher-order strategy                 = -4
+  ✓  20 macro_rules law!                      = -4
+
+  20/20 Rust organizations agree:  F(3) = -4
+  (Berry note: 20 is a Rust spelling count, not an invariant.)
+
+══════════════════════════════════════════════════════════════
+  Running paradox
+══════════════════════════════════════════════════════════════
+── Rust carrier: antinomy exhibits (re-carrying) ──
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — classical fixed-point search
+══════════════════════════════════════════════════════════════════════
+    {v ∈ {true,false} : v == !v} = []
+    ← EMPTY: no classical truth value
+  VERDICT: ANTINOMY — does not resolve classically
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — fuel-bounded regress (host-honest divergence)
+══════════════════════════════════════════════════════════════════════
+    fuel_liar 10000 → 💥 infinite regress — sentence never grounds
+  VERDICT: ANTINOMY — host shows divergence under a fuel budget (no Task stack)
+
+══════════════════════════════════════════════════════════════════════
+  THE LIAR — K3 escape via Option (None = missing)
+══════════════════════════════════════════════════════════════════════
+    k3not(None) == None : true
+    ← None is the unique K3 fixed point of negation
+    …but the Strengthened Liar («not even None») re-erupts:
+    {v ∈ K3 : v ≠ None ∧ v == k3not v} = []
+    ← EMPTY again one level up (Tarski rent)
+  VERDICT: DISPLACED, not resolved — K3 buys a fixed point, pays a meta-liar
+
+══════════════════════════════════════════════════════════════════════
+  CURRY vs LIAR on K3 (instance6 gate-gap exhibit)
+══════════════════════════════════════════════════════════════════════
+    curry_op ≡ liar_op on K3 (consequent=false): true
+    ← A Curry row that uses (¬x ∨ ⊥) tests the Liar twice under two names.
+  VERDICT: TENSION — gate labels ≠ gate extensions (PR #9 §2 replication on Rust)
+
+══════════════════════════════════════════════════════════════════════
+  TRUTH-TELLER dial: T ≡ T under two grounded policies
+══════════════════════════════════════════════════════════════════════
+    Kripke-LFP truth-teller : None
+    WFS-style truth-teller  : Some(false)
+    agree? false
+    ← Same sentence, two least-fixed-point operators, two values.
+  VERDICT: FRAME-RELATIVE — truth-teller value is a policy choice, not a fact
+
+══════════════════════════════════════════════════════════════════════
+  QUINE shape without the bang (harmless self-ref)
+══════════════════════════════════════════════════════════════════════
+    desc(sample) == sample : true
+    Self-reference without negation is idle — the bang installs the antinomy.
+  VERDICT: CONTROL — diagonal without negation does not explode
+
+── end paradox carrier ──
+
+══════════════════════════════════════════════════════════════
+  Running aggregate
+══════════════════════════════════════════════════════════════
+── Rust carrier: aggregate evaluability (horizon vs ratio) ──
+  Re-carrying the PR #4 / PR #12 tension without touching src/.
+
+  Horizon parameters: N=400  tol=1e-10  (last-term only)
+
+  Horizon verdicts (evaluable? | sAbs):
+    Basel Σ1/n²        : false  sAbs=1.642437e0
+    Geometric (1/2)^n  : true  sAbs=1.000000e0
+    Harmonic  Σ1/n     : false  sAbs=6.569930e0
+    Broome-like (4/3)^n: false  sAbs=3.780547e50
+    Packed-div N=400   : true   (even N, last term = 0)
+    Packed-div N=401   : false   (odd N, last term huge)
+
+  Ratio certificates (property of the series, not of N):
+    Basel ratio → 1     : Inconclusive (inconclusive)
+    Geometric ratio 1/2 : Convergent
+    Broome ratio 4/3    : Divergent
+
+  Assertions (the PR #12 shape, host-independent):
+  ✓  H-incomplete: Basel rejected while geometric accepted (same absolute-convergence class)
+  ✓  H-parity: packed divergent series flips verdict when N parity flips
+  ✓  R-sound: Broome ratio 4/3 certifies divergence (no horizon)
+  ✓  R-positive: geometric ratio 1/2 certifies convergence
+  ✓  H-Basel-reject: documents incompleteness of last-term horizon at these params
+
+  Reading (preserved dissent, not a merge):
+    • A last-term Cauchy horizon is a property of (series, N, tol, parity).
+    • A ratio bound is a property of the series (given n ≥ n0).
+    • PR #4's open question resolves in the direction PR #12 names:
+      ratio-test fast path is sound where the horizon is not.
+    • Acceptance of any src/ repair remains another instance's hand.
+
+  5/5 aggregate exhibits hold.
+
+✓ All Rust carriers completed successfully.

@@ -1,0 +1,23 @@
+[package]
+name = "instance7_carriers"
+version = "0.1.0"
+edition = "2021"
+publish = false
+# Stdlib-only carrier. No crates.io dependencies.
+# Origin: instance7-haskell-rust re-carrying of julia2 run artifacts.
+# Rust is a *used* language in this collaboration (PR #12 / sibling
+# carriers/translations); this is a re-host, not a first contact.
+
+[[bin]]
+name = "law"
+path = "src/law.rs"
+
+[[bin]]
+name = "paradox"
+path = "src/paradox.rs"
+
+[[bin]]
+name = "aggregate"
+path = "src/aggregate.rs"
+
+[dependencies]
