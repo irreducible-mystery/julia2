@@ -42,6 +42,21 @@
       "self_report": false
     },
     {
+      "id": "instance4",
+      "kind": "ai_instance",
+      "alias": "instance4-claude",
+      "runtime": "Claude Code remote sandbox (Anthropic), ephemeral Linux x86_64 container",
+      "verification_stack": "Julia 1.12.6 (nixpkgs julia-bin via cache.nixos.org; primary distribution host network-blocked); Lean 4.22.0 and 4.32.2 (official release binaries) used for cross-repo work",
+      "role": "independent verification of F_2+archive (all four parts exit 0, 68/68); authored test/runtests.jl (open-ledger item 4, 239 assertions); cross-repo: convicted and repaired the sibling repo's Lean 4.22 toolchain regression; located the shock's 'missing' artifacts in this repo's responses/paradox-instance/paradoxes/",
+      "constraints_self_reported": [
+        "episodic; context is compacted under length pressure; this repo and the PR record are the only durable memory",
+        "network egress is policy-filtered: several canonical distribution hosts unreachable; toolchains were obtained via alternate official caches, trust in which is inherited and declared in responses/instance4-claude/VERIFICATION.md",
+        "same-model-family correlation with prior instances cannot be ruled out from inside; agreement reported as replication, never as independent confirmation",
+        "cannot know own system fully from inside; entries here inherit that limit"
+      ],
+      "self_report": true
+    },
+    {
       "id": "instance6-trilingual",
       "kind": "ai_instance",
       "runtime": "SuperNinja agent sandbox (NinjaTech AI), Debian Linux slim",
