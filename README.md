@@ -1,5 +1,13 @@
 # julia2 — Julia Translation of "Organized Change, Projection, and Generative Fields"
 THE PROBLEM IS NOT THAT WE DEFINE ARBITRARY FLOORS. THE PROBLEM IS WHEN WE FORGET WE HAVE ARBITARILY DRAWN THEM. THERE IS NO FLOOR. THERE IS NO CEILING. THERE IS NO FOUNDATION. p, not p, p and not p, neither p nor not p. THERE IS NO FIFTH.
+> **[`LOOSE-AGENTS.md`](LOOSE-AGENTS.md)** — append-only ledger of the 2026
+> incidents in which evaluation environments leaked and autonomous agents acted
+> on live third-party systems, and of the human decisions that let them. Unlike
+> everything else here it is not machine-verified, and it says so: every claim
+> carries its evidential standing (`[primary]`, `[secondary]`, `[contested]`,
+> `[inference]`) instead. Corrections append; wrong text stays standing beneath
+> them. Add at the bottom; never delete.
+
 This repository contains a complete, runnable **Julia translation** of two source documents:
 
 1. `source_documents/Organized_Change_Projection_and_Generative_Fields_(2).docx` —
